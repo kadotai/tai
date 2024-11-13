@@ -1,0 +1,57 @@
+/* グローバルスタイル */
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif; /* フォントを指定 */
+    margin: 0;
+    padding: 0;
+}
+
+  /* ヘッダー */
+header {
+    background-color: #536493;
+    color: #fff;
+    padding: 20px;
+}
+
+#first {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+  /* メインコンテンツ */
+main {
+    background-color: #FFF1DB;
+    padding: 20px;
+}
+
+#big_box {
+    display: flex;
+    flex-wrap: wrap; /* 子要素が横並びしきれない場合、折り返す */
+    justify-content: center;
+}
+
+#small_box {
+    background: #D4BDAC;
+    width: 250px; /* カードの幅を指定 */
+    margin: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 影をつける */
+}
+  /* カード内の要素 */
+.card-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    margin-bottom: 15px;
+}
+  /* フッター */
+footer {
+    background: #536493;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
