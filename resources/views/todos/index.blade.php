@@ -53,6 +53,5 @@
         <p>&copy; 2024 Tai team</p>
     </footer>
 </body>
-{{-- <script src="/resources/js/script.js"></script> --}}
 <script src="{{ asset('js/script.js') }}"></script>
 </html>
