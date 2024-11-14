@@ -19,6 +19,8 @@ class TodoController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->title);
+        
         $todo = new Task;
         $todo -> title = $request -> title;
         $todo -> contents = $request -> contents;
@@ -35,7 +37,7 @@ class TodoController extends Controller
 
         $todo -> title = $request -> input('title');
         $todo -> contents = $request -> input('contents');
-        $todo ->image_at = now();
+        // $todo ->image_at = now();
         $todo->user_id = auth()->user()->id;
         $todo -> save();
 

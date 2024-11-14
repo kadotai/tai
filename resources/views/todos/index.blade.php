@@ -21,10 +21,9 @@
               <form action="{{ route('todos.update', $todo->id) }}" method="POST">
                 @csrf
                 @method('put') 
-              <input type="text" name=
-              title" value="{{ $todo->title }}" placeholder="Title">
+              <input type="text" name="title" value="{{ $todo->title }}" placeholder="Title">
               <br>
-              <input type="text" name="comments" value="{{ $todo->contents }}" placeholder="Detail">
+              <input type="text" name="contents" value="{{ $todo->contents }}" placeholder="Detail">
               <br>
               <button type="submit" id="closeModalButton">ok</button>
               <button type="button" id="closeModalButton">close</button>
