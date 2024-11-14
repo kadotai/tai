@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 </head>
 <body>
     <header>
@@ -53,5 +53,6 @@
         <p>&copy; 2024 Tai team</p>
     </footer>
 </body>
-<script src="/resources/js/script.js"></script>
+{{-- <script src="/resources/js/script.js"></script> --}}
+<script src="{{ asset('js/script.js') }}"></script>
 </html>
