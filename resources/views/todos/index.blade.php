@@ -15,21 +15,26 @@
             <!-- 新規投稿ボタン -->
             <button id="openModalButton">New Post</button>
             <!-- 新規投稿モーダル -->
+            @foreach($todos as $todo)
             <div id="modal">
               <h2>What will you do?</h2>
-              <input type="text" placeholder="Title">
+              <form action="{{ route('todos.update', $todo->id) }}" method="POST">
+                @csrf
+                @method('put') 
+              <input type="text" name=
+              title" value="{{ $todo->title }}" placeholder="Title">
               <br>
-              <input type="text" placeholder="Detail">
+              <input type="text" name="comments" value="{{ $todo->contents }}" placeholder="Detail">
               <br>
-              <button id="closeModalButton">ok</button>
-              <button id="closeModalButton">close</button>
+              <button type="submit" id="closeModalButton">ok</button>
+              <button type="button" id="closeModalButton">close</button>
             </div>
+        @endforeach 
         </div>
     </header>
     <main>
         
         <div id="big_box">
-            
             @foreach($todos as $todo)
             <div id="small_box">
                 <img src="" alt="アイコン">

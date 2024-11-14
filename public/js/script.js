@@ -18,4 +18,6 @@ document.getElementById('closeModalButton1').addEventListener('click', function(
     document.getElementById('modalOverlay1').style.display = 'none';
 });
 
-//やっほー
+// document.getElementById('closeModalButton').addEventListener('click', function() {
+//     document.getElementById('modal').style.display = 'none';  
+// });

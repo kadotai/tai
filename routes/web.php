@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TodoController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,5 +22,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::get('/todos/create',[TodoController::class,'create'])-> name('todos.create');
+Route::post('/todos',[TodoController::class,'store'])-> name('todos.store');
 Route::get('/todos',[TodoController::class,'index'])->name('todos.index');
+Route::put('/todos/{id}',[TodoController::class,'update'])->name('todos.update');
