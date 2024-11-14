@@ -17,3 +17,5 @@ document.getElementById('closeModalButton1').addEventListener('click', function(
     document.getElementById('modal1').style.display = 'none';
     document.getElementById('modalOverlay1').style.display = 'none';
 });
+
+//やっほー
