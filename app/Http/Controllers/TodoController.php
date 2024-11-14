@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Todo;
+use App\Http\Controllers;
+use App\Models\Task;
 
 class TodoController extends Controller
 {
     //
     function index()
     {   
-        // $todos = Todo::all();
-        return view('todos.index');
+        $todos = Task::all();
+        //dd($todos);
+        return view('todos.index',['todos'=>$todos]);
     }
 }
