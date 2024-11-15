@@ -10,7 +10,6 @@
     <header>
         <div id="first">
             <h1>TaiToDo</h1>
-            
             <!-- 新規投稿モーダル用のオーバーレイ -->
             <div id="modalOverlay"></div>
             <!-- 新規投稿ボタン -->
@@ -52,8 +51,9 @@
             @foreach($todos as $todo)
             <div id="small_box">
                 <img src="" alt="アイコン" width="100px">
-                <h5 class="card-title">タイトル : {{ $todo->title }}<br></h5>
-                <p class="card-text">内容 : {{ $todo->contents }}<br></p>
+                {{-- <h5 class="card-title"><input type="checkbox" name="daily" value="done"> {{ $todo->title }}<br></h5> --}}
+                <br><label class="ECM_CheckboxInput"><input class="ECM_CheckboxInput-Input" type="checkbox"><span class="ECM_CheckboxInput-DummyInput"></span><span class="ECM_CheckboxInput-LabelText">{{ $todo->title }}</span></label>
+                <p class="card-text">{{ $todo->contents }}<br></p>
                 <!-- 編集モーダル用のオーバーレイ -->
                 <div id="modalOverlay1"></div>
                 <!-- 編集ボタン -->

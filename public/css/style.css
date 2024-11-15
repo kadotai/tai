@@ -113,6 +113,74 @@ main {
     justify-content: end;
 }
 
+.ECM_CheckboxInput {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  .ECM_CheckboxInput-Input {
+    margin: 0;
+    width: 0;
+    opacity: 0;
+  }
+  .ECM_CheckboxInput:hover{
+    background: rgba(0,0,0,.05) !important;
+  }
+  .ECM_CheckboxInput:hover > .ECM_CheckboxInput-DummyInput{
+    transform: scale(1.1);
+  }
+  .ECM_CheckboxInput-Input:focus + .ECM_CheckboxInput-DummyInput{
+    transform: scale(1.1);
+  }
+  .ECM_CheckboxInput-Input:checked + .ECM_CheckboxInput-DummyInput {
+    background: #536493;
+  }
+  .ECM_CheckboxInput-Input:checked + .ECM_CheckboxInput-DummyInput::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 35%;
+    height: 4px;
+    border-radius: 2px;
+    transform: translate(-6px, 5px) rotateZ(-135deg);
+    transform-origin: 2px 2px;
+    background: #FFFFFF;
+  }
+  .ECM_CheckboxInput-Input:checked + .ECM_CheckboxInput-DummyInput::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70%;
+    height: 4px;
+    border-radius: 2px;
+    transform: translate(-6px, 5px) rotateZ(-45deg);
+    transform-origin: 2px 2px;
+    background: #FFFFFF;
+  }
+  .ECM_CheckboxInput-DummyInput {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 32px;
+    height: 32px;
+    border: solid 2px transparent;
+    background: rgba(0, 0, 0, .15);
+    border-radius: 50%;
+    transition: all .15s linear;
+  }
+  .ECM_CheckboxInput-LabelText {
+    margin-left: 10px;
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
 /* 編集ボタン */
 #openModalButton1 {
     color: #EF5A6F;
