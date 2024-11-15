@@ -41,6 +41,14 @@ class TodoController extends Controller
         return redirect()->route('todos.index');
     }
 
+    function edit($id)
+    {
+        $todo = Task::find($id);
+
+        return view('todos.index')
+
+    }
+
 }
 // public function store(Request $request)
 // {
