@@ -34,15 +34,10 @@ header {
 
 /* 新規投稿ボタン */
 #openModalButton {
-    color: #EF5A6F;
+    color: #FFF;
     padding: 10px 20px;
-<<<<<<< Updated upstream
     background: #EF5A6F;
     border:  3px solid #EF5A6F;
-=======
-    background: #FFF;
-    border:  2px solid #FFF;
->>>>>>> Stashed changes
     border-radius: 10px;
     font-size:25px;
 }
