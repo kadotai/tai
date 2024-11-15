@@ -41,7 +41,7 @@ class TodoController extends Controller
         return redirect()->route('todos.index');
     }
 
-
+}
 // public function store(Request $request)
 // {
 //     $validatedData = $request->validate([
