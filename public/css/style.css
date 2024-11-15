@@ -9,6 +9,7 @@
 h1 {
     color: #FFF;
     font-size: 50px;
+    width: 100px;
 }
 
   /* ヘッダー */
@@ -25,16 +26,17 @@ header {
 }
 
 .dropdown-toggle {
-    color: #EF5A6F;
+    color: #FFF;
     font-size: 25px;
     text-decoration: none; 
+    width: 100px;
 }
 
 /* 新規投稿ボタン */
 #openModalButton {
     color: #FFF;
     padding: 10px 20px;
-    background: #536493;
+    background: #EF5A6F;
     border:  2px solid #EF5A6F;
     border-radius: 10px;
     font-size:25px;
