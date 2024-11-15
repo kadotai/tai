@@ -57,8 +57,11 @@
                 <!-- 編集モーダル用のオーバーレイ -->
                 <div id="modalOverlay1"></div>
                 <!-- 編集ボタン -->
-                <div class="button">
-                <button id="openModalButton1">edit</button>
+                <form action="{{ route('todos.update', $todo->id) }}" method="POST">
+                    @csrf
+                    <div class="button">
+                    <button id="openModalButton1">edit</button>
+                </form>
 
                 <form id="deleteForm{{ $todo->id }}" action="{{ route('todos.destroy', $todo->id) }}" method="POST">
                     @csrf
@@ -76,7 +79,6 @@
                   <button id="closeModalButton1">ok</button>
                   <button id="closeModalButton1">close</button>
             </div>
-            
         </div>
         @endforeach
     </main>
