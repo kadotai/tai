@@ -107,8 +107,24 @@ main {
     margin-bottom: 15px;
 }
 
+.button {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
 /* 編集ボタン */
 #openModalButton1 {
+    color: #EF5A6F;
+    padding: 5px 10px;
+    background: #FFF;
+    border:  none;
+    font-size: 15px;
+    border-radius: 10px;
+    margin: 0 10px;
+}
+
+.delete-button {
     color: #EF5A6F;
     padding: 5px 10px;
     background: #FFF;

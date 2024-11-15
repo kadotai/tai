@@ -57,6 +57,7 @@
                 <!-- 編集モーダル用のオーバーレイ -->
                 <div id="modalOverlay1"></div>
                 <!-- 編集ボタン -->
+                <div class="button">
                 <button id="openModalButton1">edit</button>
 
                 <form id="deleteForm{{ $todo->id }}" action="{{ route('todos.destroy', $todo->id) }}" method="POST">
@@ -64,6 +65,7 @@
                     @method('DELETE')
                     <button type="button" class="delete-button" data-id="{{ $todo->id }}">delete</button>
                 </form>
+                </div>
                 <!-- 編集モーダル -->
                 <form actions="{{ route('todos.update', $todo->id) }}" method="POST">
                 <div id="modal1">
