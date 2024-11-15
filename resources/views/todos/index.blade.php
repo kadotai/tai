@@ -22,7 +22,7 @@
                 <a href="/logout">Logout</a>
             <!-- 新規投稿モーダル -->
             <div id="modal">
-            <form action="{{ route('todos.store') }}" method="POST">
+            <form action="{{ route('todos.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
               <h2>What will you do?</h2>
               <input type="text" name='title' placeholder="Title">
@@ -52,11 +52,7 @@
         <div id="big_box">
             @foreach($todos as $todo)
             <div id="small_box">
-                <img src="" alt="アイコン" width="100px">
-                {{-- <h5 class="card-title"><input type="checkbox" name="daily" value="done"> {{ $todo->title }}<br></h5> --}}
-                <br><label class="ECM_CheckboxInput"><input class="ECM_CheckboxInput-Input" type="checkbox"><span class="ECM_CheckboxInput-DummyInput"></span><span class="ECM_CheckboxInput-LabelText">{{ $todo->title }}</span></label>
-                <p class="card-text">{{ $todo->contents }}<br></p>
-                <img src="{{ $todo->image_at }}" alt="アイコン" width="100px">
+                <img src="{{ asset('storage/' . $todo->image_at) }}" alt="アイコン" width="100px">
                 <h5 class="card-title">タイトル : {{ $todo->title }}<br></h5>
                 <p class="card-text">内容 : {{ $todo->contents }}<br></p>
                 <!-- 編集モーダル用のオーバーレイ -->
