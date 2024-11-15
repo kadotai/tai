@@ -18,6 +18,7 @@ class TodoController extends Controller
         return view('todos.index',['todos'=>$todos]);
     }
 
+
     function store(Request $request)
     {
         // dd($request);
@@ -31,9 +32,16 @@ class TodoController extends Controller
         return redirect()->route('todos.index');
 
     }
+
+    function destroy($id)
+    {
+        $todo = Task::find($id);
+        $todo -> delete();
+
+        return redirect()->route('todos.index');
+    }
+
 }
-
-
 // public function store(Request $request)
 // {
 //     $validatedData = $request->validate([

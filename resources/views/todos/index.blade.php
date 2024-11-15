@@ -48,7 +48,6 @@
     <main>
         
         <div id="big_box">
-            
             @foreach($todos as $todo)
             <div id="small_box">
                 <img src="" alt="アイコン">
@@ -58,8 +57,12 @@
                 <div id="modalOverlay1"></div>
                 <!-- 編集ボタン -->
                 <button id="openModalButton1">edit</button>
-                <button id="Button2">delete</button>
-                
+
+                <form id="deleteForm{{ $todo->id }}" action="{{ route('todos.destroy', $todo->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="button" class="delete-button" data-id="{{ $todo->id }}">delete</button>
+                </form>
                 <!-- 編集モーダル -->
                 <div id="modal1">
                   <input type="text" placeholder="Title">
@@ -69,6 +72,7 @@
                   <button id="closeModalButton1">ok</button>
                   <button id="closeModalButton1">close</button>
             </div>
+            
         </div>
         @endforeach
     </main>
