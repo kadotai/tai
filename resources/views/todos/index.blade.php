@@ -27,11 +27,14 @@
         </div>
     </header>
     <main>
+        
         <div id="big_box">
+            
+            @foreach($todos as $todo)
             <div id="small_box">
                 <img src="" alt="アイコン">
-                <h5 class="card-title">タイトル <br> aiuure</h5>
-                <p class="card-text">内容 <br>aiueo </p>
+                <h5 class="card-title">タイトル : {{ $todo->title }}<br></h5>
+                <p class="card-text">内容 : {{ $todo->contents }}<br></p>
                 <!-- 編集モーダル用のオーバーレイ -->
                 <div id="modalOverlay1"></div>
                 <!-- 編集ボタン -->
@@ -48,6 +51,7 @@
                   <button id="closeModalButton1">close</button>
             </div>
         </div>
+        @endforeach
     </main>
     <footer>
         <p>&copy; 2024 Tai team</p>
