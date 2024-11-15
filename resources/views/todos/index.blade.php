@@ -16,12 +16,12 @@
             <button id="openModalButton">New Post</button>
             <!-- 新規投稿モーダル -->
             <div id="modal">
-            <form action="{{ route('posts.store') }}" method="POST">
+            <form action="{{ route('todos.store') }}" method="POST">
             @csrf
               <h2>What will you do?</h2>
               <input type="text" name='title' placeholder="Title">
               <br>
-              <input type="text" name='detail' placeholder="Detail">
+              <input type="text" name='contents' placeholder="Contents">
               <br>
               <button id="closeModalButton">ok</button>
             </form>
