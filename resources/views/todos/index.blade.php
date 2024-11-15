@@ -29,6 +29,7 @@
               <br>
               <input type="text" name='contents' placeholder="Contents">
               <br>
+              <input id="image" type="file" name="image">
               <button id="closeModalButton">ok</button>
             </form>
               {{-- <button id="closeModalButton">close</button> --}}
@@ -50,7 +51,7 @@
         <div id="big_box">
             @foreach($todos as $todo)
             <div id="small_box">
-                <img src="" alt="アイコン">
+                <img src="" alt="アイコン" width="100px">
                 <h5 class="card-title">タイトル : {{ $todo->title }}<br></h5>
                 <p class="card-text">内容 : {{ $todo->contents }}<br></p>
                 <!-- 編集モーダル用のオーバーレイ -->
