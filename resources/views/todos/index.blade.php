@@ -18,7 +18,7 @@
             @foreach($todos as $todo)
             <div id="modal">
               <h2>What will you do?</h2>
-              <form action="{{ route('todos.update', $todo->id) }}" method="POST">
+              <form action="{{ route('todos.store', $todo->id) }}" method="POST">
                 @csrf
                 @method('put') 
               <input type="text" name="title" value="{{ $todo->title }}" placeholder="Title">
