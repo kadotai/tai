@@ -26,3 +26,4 @@ Route::get('/todos',[TodoController::class,'index'])->name('todos.index');
 
 Route::post('/posts', [TodoController::class, 'store'])->name('posts.store');
 
+Route::put('/todos/{id}', [TodoController::class, 'update'])->name('todos.update');

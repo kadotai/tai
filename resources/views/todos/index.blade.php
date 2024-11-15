@@ -53,16 +53,20 @@
                 <!-- 編集ボタン -->
                 <button id="openModalButton1">edit</button>
                 <button id="Button2">delete</button>
-                
+
+            @foreach($todos as $todo)
                 <!-- 編集モーダル -->
+                <form actions="{{ route('todos.update', $todo->id) }}" method="POST">
                 <div id="modal1">
-                  <input type="text" placeholder="Title">
+                  <input type="text" value="{{ $todo->title }} "placeholder="Title">
                   <br>
-                  <input type="text" placeholder="Detail">
+                  <input type="text" value="{{ $todo->contents }}" placeholder="Detail">
                   <br>
                   <button id="closeModalButton1">ok</button>
                   <button id="closeModalButton1">close</button>
-            </div>
+                </div>
+                </form>
+            @endforeach
         </div>
         @endforeach
     </main>
