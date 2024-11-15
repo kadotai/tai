@@ -21,7 +21,7 @@
               <h2>What will you do?</h2>
               <input type="text" name='title' placeholder="Title">
               <br>
-              <input type="text" name='detail' placeholder="Detail">
+              <input type="text" name='conten' placeholder="Detail">
               <br>
               <button id="closeModalButton">ok</button>
             </form>
