@@ -39,8 +39,9 @@ class TodoController extends Controller
     // 画像がアップロードされているかを確認
         if ($request->hasFile('image')) {
         // 画像をstorageに保存し、そのパスを取得
-        $path = $request->file('image')->store('images', 'public');
-        $post->image_path = $path; // パスをデータベースに保存
+        $path = $request->file('image')->store('images', 'public');  // スペースを含まない
+        $post->image_at = $path; // パスをデータベースに保存
+        //dd($path);
         }
 
         $post -> save();
