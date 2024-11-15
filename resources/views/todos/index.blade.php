@@ -16,13 +16,26 @@
             <button id="openModalButton">New Post</button>
             <!-- 新規投稿モーダル -->
             <div id="modal">
+            <form action="{{ route('posts.store') }}" method="POST">
+            @csrf
               <h2>What will you do?</h2>
-              <input type="text" placeholder="Title">
+              <input type="text" name='title' placeholder="Title">
               <br>
-              <input type="text" placeholder="Detail">
+              <input type="text" name='detail' placeholder="Detail">
               <br>
               <button id="closeModalButton">ok</button>
-              <button id="closeModalButton">close</button>
+            </form>
+              {{-- <button id="closeModalButton">close</button> --}}
+              <!-- タイトルのエラーメッセージ -->
+              @if ($errors->has('title'))
+              <p style="color:red;">{{ $errors->first('title') }}</p>
+              @endif
+
+              <!-- 詳細のエラーメッセージ -->
+              @if ($errors->has('detail'))
+              <p style="color:red;">{{ $errors->first('detail') }}</p>
+              @endif
+
             </div>
         </div>
     </header>
