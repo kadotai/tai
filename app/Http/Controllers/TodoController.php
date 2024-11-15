@@ -34,17 +34,13 @@ class TodoController extends Controller
 }
 
 
-
-
-
-
-// public function update(Request $request)
+// public function store(Request $request)
 // {
 //     $validatedData = $request->validate([
 //         'title' => 'required',
-//         'detail' => 'required',
+//         'contents' => 'required',
 //     ]);
-
+// }
     // バリデーション通過後の処理
     // $post->update($validatedData); // 更新処理など
-// }
+// 

@@ -9,11 +9,17 @@
 <body>
     <header>
         <div id="first">
-            <h1 >Tai To Do</h1>
+            <h1>TaiToDo</h1>
+            
             <!-- 新規投稿モーダル用のオーバーレイ -->
             <div id="modalOverlay"></div>
             <!-- 新規投稿ボタン -->
             <button id="openModalButton">New Post</button>
+            {{-- ユーザーネーム --}}
+            <div class="dropdown nav">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ Auth::user()->name }}
+                </a>
             <!-- 新規投稿モーダル -->
             <div id="modal">
             <form action="{{ route('todos.store') }}" method="POST">
