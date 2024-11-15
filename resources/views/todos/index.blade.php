@@ -29,6 +29,7 @@
               <br>
               <input type="text" name='contents' placeholder="Contents">
               <br>
+              <input id="image" type="file" name="image">
               <button id="closeModalButton">ok</button>
             </form>
               {{-- <button id="closeModalButton">close</button> --}}
@@ -48,19 +49,21 @@
     <main>
         
         <div id="big_box">
-            
             @foreach($todos as $todo)
             <div id="small_box">
-                <img src="" alt="アイコン">
+                <img src="" alt="アイコン" width="100px">
                 <h5 class="card-title">タイトル : {{ $todo->title }}<br></h5>
                 <p class="card-text">内容 : {{ $todo->contents }}<br></p>
                 <!-- 編集モーダル用のオーバーレイ -->
                 <div id="modalOverlay1"></div>
                 <!-- 編集ボタン -->
                 <button id="openModalButton1">edit</button>
-                <button id="Button2">delete</button>
 
-            @foreach($todos as $todo)
+                <form id="deleteForm{{ $todo->id }}" action="{{ route('todos.destroy', $todo->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="button" class="delete-button" data-id="{{ $todo->id }}">delete</button>
+                </form>
                 <!-- 編集モーダル -->
                 <form actions="{{ route('todos.update', $todo->id) }}" method="POST">
                 <div id="modal1">
@@ -70,9 +73,8 @@
                   <br>
                   <button id="closeModalButton1">ok</button>
                   <button id="closeModalButton1">close</button>
-                </div>
-                </form>
-            @endforeach
+            </div>
+            
         </div>
         @endforeach
     </main>
