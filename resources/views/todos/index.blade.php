@@ -52,7 +52,11 @@
                 <div id="modalOverlay1"></div>
                 <!-- 編集ボタン -->
                 <button id="openModalButton1">edit</button>
-                <button id="Button2">delete</button>
+            <form id="deleteForm" action="{{ route('todos.destroy', $todo->id) }}" method="POST">
+                @csrf
+                @method('delete')
+                <button type="button" id="Button2"{{ $todo->id }}>delete</button>
+            </form>
                 
                 <!-- 編集モーダル -->
                 <div id="modal1">

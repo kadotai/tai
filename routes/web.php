@@ -26,3 +26,4 @@ Route::get('/todos',[TodoController::class,'index'])->name('todos.index');
 
 Route::post('/posts', [TodoController::class, 'store'])->name('posts.store');
 
+Route::delete('/todos/{id}', [TodoController::class, 'destroy'])->name('todos.destroy');

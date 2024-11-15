@@ -18,4 +18,12 @@ document.getElementById('closeModalButton1').addEventListener('click', function(
     document.getElementById('modalOverlay1').style.display = 'none';
 });
 
-//やっほー
+@foreach($todos as $todo)
+    document.getElementById('Button2{{$todo->id}}').addEventListener('click', function() {
+        if(!confirm('本当に削除しますか？')) {
+            event.preventDefault();
+        } else {
+            document.getElementById('deleteForm{{$todo->id}}').submit();
+        }
+});
+@endforeach

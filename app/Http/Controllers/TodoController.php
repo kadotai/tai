@@ -16,6 +16,14 @@ class TodoController extends Controller
         //dd($todos);
         return view('todos.index',['todos'=>$todos]);
     }
+
+    function destroy($id)
+    {
+        $todo = Task::find($id);
+        $todo -> delete();
+
+        return redirect()->route('todos.index');
+    }
 }
 
 
