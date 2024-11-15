@@ -65,10 +65,11 @@
                     <button type="button" class="delete-button" data-id="{{ $todo->id }}">delete</button>
                 </form>
                 <!-- 編集モーダル -->
+                <form actions="{{ route('todos.update', $todo->id) }}" method="POST">
                 <div id="modal1">
-                  <input type="text" placeholder="Title">
+                  <input type="text" value="{{ $todo->title }} "placeholder="Title">
                   <br>
-                  <input type="text" placeholder="Detail">
+                  <input type="text" value="{{ $todo->contents }}" placeholder="Detail">
                   <br>
                   <button id="closeModalButton1">ok</button>
                   <button id="closeModalButton1">close</button>
