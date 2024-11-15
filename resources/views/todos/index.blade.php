@@ -29,7 +29,8 @@
               <br>
               <input type="text" name='contents' placeholder="Contents">
               <br>
-              <input id="image" type="file" name="image">
+              <label for="image">Image:</label>
+              <input id="image" type="file" name="image" accept="image/*">
               <button id="closeModalButton">ok</button>
             </form>
               {{-- <button id="closeModalButton">close</button> --}}
@@ -55,6 +56,9 @@
                 {{-- <h5 class="card-title"><input type="checkbox" name="daily" value="done"> {{ $todo->title }}<br></h5> --}}
                 <br><label class="ECM_CheckboxInput"><input class="ECM_CheckboxInput-Input" type="checkbox"><span class="ECM_CheckboxInput-DummyInput"></span><span class="ECM_CheckboxInput-LabelText">{{ $todo->title }}</span></label>
                 <p class="card-text">{{ $todo->contents }}<br></p>
+                <img src="{{ $todo->image_at }}" alt="アイコン" width="100px">
+                <h5 class="card-title">タイトル : {{ $todo->title }}<br></h5>
+                <p class="card-text">内容 : {{ $todo->contents }}<br></p>
                 <!-- 編集モーダル用のオーバーレイ -->
                 <div id="modalOverlay1"></div>
                 <!-- 編集ボタン -->

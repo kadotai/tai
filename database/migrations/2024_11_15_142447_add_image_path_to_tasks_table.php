@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('tasks', function (Blueprint $table) {
-            $table->text('image_at')->nullable()->change(); // nullを許容
+            $table->string('image_path')->nullable(); // 画像パスを保存するカラム
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('tasks', function (Blueprint $table) {
-            $table->text('image_at')->nullable(false)->change(); // 元に戻す
+            $table->dropColumn('image_path');
         });
     }
 };
