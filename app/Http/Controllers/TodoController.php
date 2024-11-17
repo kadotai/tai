@@ -66,6 +66,28 @@ class TodoController extends Controller
 //         'contents' => 'required',
 //     ]);
 // }
-    // バリデーション通過後の処理
-    // $post->update($validatedData); // 更新処理など
-// 
+//     バリデーション通過後の処理
+//     $post->update($validatedData); // 更新処理など
+
+function store(Request $request)
+{
+    // バリデーション
+    $validatedData = $request->validate([
+        'title' => 'required',
+        'contents' => 'required',
+    ]);
+
+    // 更新対象のタスクを取得
+    $post = Task::find($request->id); // IDをリクエストから取得する例
+
+    // データが存在すれば更新
+    if ($post) {
+        $post->update($validatedData);
+    } else {
+        return redirect()->route('todos.index')->with('error', '対象のタスクが見つかりません');
+    }
+
+    // 更新後、リダイレクト
+    return redirect()->route('todos.index')->with('success', 'タスクを更新しました');
+}
+

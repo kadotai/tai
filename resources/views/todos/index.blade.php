@@ -35,13 +35,22 @@
             </form>
               {{-- <button id="closeModalButton">close</button> --}}
               <!-- タイトルのエラーメッセージ -->
-              @if ($errors->has('title'))
+              {{-- @if ($errors->has('title'))
               <p style="color:red;">{{ $errors->first('title') }}</p>
-              @endif
+              @endif --}}
 
               <!-- 詳細のエラーメッセージ -->
-              @if ($errors->has('detail'))
+              {{-- @if ($errors->has('detail'))
               <p style="color:red;">{{ $errors->first('detail') }}</p>
+              @endif --}}
+
+              <!-- エラーメッセージ -->
+              @if ($errors->has('title'))
+              <p class="error-message" style="color:red;">{{ $errors->first('title') }}</p>
+              @endif
+
+              @if ($errors->has('detail'))
+              <p class="error-message" style="color:red;">{{ $errors->first('detail') }}</p>
               @endif
 
             </div>
