@@ -9,7 +9,7 @@
 h1 {
     color: #FFF;
     font-size: 50px;
-    width: 100px;
+    width: 150px;
 }
 
   /* ヘッダー */
@@ -25,11 +25,22 @@ header {
     align-items: center;
 }
 
+.dropdown nav {
+  width: 150px;
+}
+
+
 .dropdown-toggle {
     color: #FFF;
     font-size: 25px;
     text-decoration: none; 
-    width: 100px;
+}
+
+.dropdown-toggle1 {
+  color: #EF5A6F;
+  font-size: 25px;
+  text-decoration: none; 
+  
 }
 
 /* 新規投稿ボタン */

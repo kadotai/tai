@@ -19,7 +19,7 @@
                 <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ Auth::user()->name }}
                 </a>
-                <a href="/logout">Logout</a>
+                <a class="dropdown-toggle1" href="/logout">&nbsp;Logout</a>
             <!-- 新規投稿モーダル -->
             <div id="modal">
             <form action="{{ route('todos.store') }}" method="POST" enctype="multipart/form-data">
