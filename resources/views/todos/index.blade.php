@@ -62,8 +62,8 @@
             @foreach($todos as $todo)
             <div id="small_box">
                 <img src="{{ asset('storage/' . $todo->image_at) }}" alt="アイコン" width="100px">
-                <h5 class="card-title">タイトル : {{ $todo->title }}<br></h5>
-                <p class="card-text">内容 : {{ $todo->contents }}<br></p>
+                <label class="ECM_CheckboxInput"><input class="ECM_CheckboxInput-Input" type="checkbox"><span class="ECM_CheckboxInput-DummyInput"></span><span class="ECM_CheckboxInput-LabelText"><h5 class="card-title">{{ $todo->title }}<br></h5></span></label>
+                <p class="card-text">{{ $todo->contents }}<br></p>
                 <!-- 編集モーダル用のオーバーレイ -->
                 <div id="modalOverlay1"></div>
                 <!-- 編集ボタン -->
