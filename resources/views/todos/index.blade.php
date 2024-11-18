@@ -32,6 +32,8 @@
               <label for="image" class="image_button">Select Image</label>
               <input id="image" type="file" name="image" accept="image/*" style="display: none;">
               <button id="closeModalButton">Ok</button>
+              <a class="dropdown-toggle1" href="/todos">&nbsp;Back</a>
+
             </form>
               {{-- <button id="closeModalButton">close</button> --}}
               <!-- タイトルのエラーメッセージ -->
@@ -60,7 +62,7 @@
         
         <div id="big_box">
             @foreach($todos as $todo)
-            <div id="small_box">
+            {{-- <div id="small_box">
                 <img src="{{ asset('storage/' . $todo->image_at) }}" alt="アイコン" width="210px">
                 <label class="ECM_CheckboxInput"><input class="ECM_CheckboxInput-Input" type="checkbox"><span class="ECM_CheckboxInput-DummyInput"></span><span class="ECM_CheckboxInput-LabelText"><h5 class="card-title">{{ $todo->title }}<br></h5></span></label>
                 <p class="card-text">{{ $todo->contents }}<br></p>
@@ -87,6 +89,24 @@
                   <button id="closeModalButton1">close</button>
             </div>
             
+        </div> --}}
+        <div id="small_box">
+            <img src="{{ asset('storage/' . $todo->image_at) }}" alt="アイコン" width="210px">
+            <label class="ECM_CheckboxInput">
+                <input class="ECM_CheckboxInput-Input" type="checkbox">
+                <span class="ECM_CheckboxInput-DummyInput"></span>
+                <h5 class="card-title">{{ $todo->title }}</h5> <!-- span を削除 -->
+            </label>
+            <p class="card-text">{{ $todo->contents }}</p>
+            <div id="modalOverlay1"></div>
+            <div class="button">
+                <button id="openModalButton1">Edit</button>
+                <form id="deleteForm{{ $todo->id }}" action="{{ route('todos.destroy', $todo->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="button" class="delete-button" data-id="{{ $todo->id }}">Delete</button>
+                </form>
+            </div>
         </div>
         @endforeach
     </main>

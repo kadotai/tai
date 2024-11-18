@@ -121,6 +121,7 @@ h2 {
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
+    z-index: 100;
 }
 #modalOverlay {
     display: none;
@@ -147,16 +148,23 @@ main {
 
 #small_box {
     background: #D4BDAC;
-    width: 250px; /* カードの幅を指定 */
+    width: 250px;  /* カードの幅を指定 */
     margin: 10px;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 影をつける */
+    word-wrap: break-word; /* 単語が長すぎる場合に折り返し */
+    overflow-wrap: break-word; /* 標準的な折り返し設定 */
+    white-space: normal;
 }
   /* カード内の要素 */
 .card-title {
-    font-size: 35px;
-    margin-bottom: 0;
+  word-wrap: break-word; /* 単語が長すぎる場合に折り返す */
+  overflow-wrap: break-word; /* 標準的な折り返し設定 */
+  white-space: normal; /* 通常の折り返し挙動を有効にする */
+  font-size: 20px; /* 必要に応じてフォントサイズを調整 */
+  line-height: 1.2; /* 行間を狭くして見やすく調整 */
+  max-width: 100%; /* 親要素の幅を超えないように設定 */
 }
 
 .card-text {
