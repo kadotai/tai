@@ -61,19 +61,19 @@
         <div id="big_box">
             @foreach($todos as $todo)
             <div id="small_box">
-                <img src="{{ asset('storage/' . $todo->image_at) }}" alt="アイコン" width="100px">
+                <img src="{{ asset('storage/' . $todo->image_at) }}" alt="アイコン" width="210px">
                 <label class="ECM_CheckboxInput"><input class="ECM_CheckboxInput-Input" type="checkbox"><span class="ECM_CheckboxInput-DummyInput"></span><span class="ECM_CheckboxInput-LabelText"><h5 class="card-title">{{ $todo->title }}<br></h5></span></label>
                 <p class="card-text">{{ $todo->contents }}<br></p>
                 <!-- 編集モーダル用のオーバーレイ -->
                 <div id="modalOverlay1"></div>
                 <!-- 編集ボタン -->
                 <div class="button">
-                <button id="openModalButton1">edit</button>
+                <button id="openModalButton1">Edit</button>
 
                 <form id="deleteForm{{ $todo->id }}" action="{{ route('todos.destroy', $todo->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="button" class="delete-button" data-id="{{ $todo->id }}">delete</button>
+                    <button type="button" class="delete-button" data-id="{{ $todo->id }}">Delete</button>
                 </form>
                 </div>
                 <!-- 編集モーダル -->
