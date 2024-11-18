@@ -25,13 +25,13 @@
             <form action="{{ route('todos.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
               <h2>What will you do?</h2>
-              <input type="text" name='title' placeholder="Title" maxlength="30">
+              <input class="text1" name='title' placeholder="Title" maxlength="30">
               <br>
-              <input type="text" name='contents' placeholder="Contents" maxlength="140">
+              <textarea class="text2" name='contents' placeholder="Contents" maxlength="140"></textarea>
               <br>
-              <label for="image">Image:</label>
-              <input id="image" type="file" name="image" accept="image/*">
-              <button id="closeModalButton">ok</button>
+              <label for="image" class="image_button">Select Image</label>
+              <input id="image" type="file" name="image" accept="image/*" style="display: none;">
+              <button id="closeModalButton">Ok</button>
             </form>
               {{-- <button id="closeModalButton">close</button> --}}
               <!-- タイトルのエラーメッセージ -->
@@ -49,8 +49,8 @@
               <p class="error-message" style="color:red;">{{ $errors->first('title') }}</p>
               @endif
 
-              @if ($errors->has('detail'))
-              <p class="error-message" style="color:red;">{{ $errors->first('detail') }}</p>
+              @if ($errors->has('contents'))
+              <p class="error-message" style="color:red;">{{ $errors->first('contents') }}</p>
               @endif
 
             </div>

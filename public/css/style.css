@@ -54,18 +54,62 @@ header {
 }
 
 /* 新規投稿モーダルのスタイル */
+.text1 {
+  width: 300px;
+  font-size: 20px;
+  margin: 5px 0;
+}
+
+.text2 {
+  width: 300px;
+  height: 200px;
+  font-size: 20px;
+  margin: 5px 0;
+}
+
+.image_button {
+  display: inline-block;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #536493;
+  color: #fff;
+  border-radius: 10px;
+  text-align: center;
+  border: none;
+  font-size: 20px;
+}
+.image_button:hover {
+  background-color: #536493;
+}
+
 h2 {
     color: #EF5A6F;
 }
 
-#closeModalButton {
+/* #closeModalButton {
     color: #FFF;
     padding: 5px 10px;
     border: none;
     background: #536493;
     margin: 10px 5px;
     border-radius: 10px;
+} */
+
+#closeModalButton {
+  display: inline-block;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #536493;
+  color: #fff;
+  border-radius: 10px;
+  text-align: center;
+  border: none;
+  font-size: 20px;
 }
+#closeModalButton:hover {
+  background-color: #536493;
+}
+
 
 #modal {
     display: none; /* 最初は非表示 */
@@ -73,9 +117,10 @@ h2 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
+    background-color: #D4BDAC;
     padding: 20px;
     border: 1px solid #ccc;
+    border-radius: 10px;
 }
 #modalOverlay {
     display: none;
