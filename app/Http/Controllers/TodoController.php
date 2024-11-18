@@ -58,12 +58,21 @@ class TodoController extends Controller
         return redirect()->route('todos.index');
     }
 
-    function edit($id)
+    function update(Request $request, $id)
     {
+        $request->validate([
+            'title' => 'required|max:30',
+            'contents' => 'required|string|max:140',
+        ]);
+
         $todo = Task::find($id);
 
-        return view('todos.index')
+        $todo -> title = $request -> input('title');
+        $todo -> body = $request -> input('body');
+        $todo -> save();
 
+        return redirect()->route('todos.index');
+        
     }
 
 }
@@ -90,12 +99,11 @@ function store(Request $request)
 
     // データが存在すれば更新
     if ($post) {
-        $post->update($validatedData);
+    $post->update($validatedData);
     } else {
-        return redirect()->route('todos.index')->with('error', '対象のタスクが見つかりません');
+    return redirect()->route('todos.index')->with('error', '対象のタスクが見つかりません');
     }
 
     // 更新後、リダイレクト
     return redirect()->route('todos.index')->with('success', 'タスクを更新しました');
 }
-
