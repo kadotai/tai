@@ -10,7 +10,6 @@
     <header>
         <div id="first">
             <h1>TaiToDo</h1>
-            
             <!-- 新規投稿モーダル用のオーバーレイ -->
             <div id="modalOverlay"></div>
             <!-- 新規投稿ボタン -->
@@ -20,27 +19,39 @@
                 <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ Auth::user()->name }}
                 </a>
+                <a class="dropdown-toggle1" href="/logout">&nbsp;Logout</a>
             <!-- 新規投稿モーダル -->
             <div id="modal">
-            <form action="{{ route('todos.store') }}" method="POST">
+            <form action="{{ route('todos.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
               <h2>What will you do?</h2>
-              <input type="text" name='title' placeholder="Title">
+              <input class="text1" name='title' placeholder="Title" maxlength="30">
               <br>
-              <input type="text" name='contents' placeholder="Contents">
+              <textarea class="text2" name='contents' placeholder="Contents" maxlength="140"></textarea>
               <br>
-              <input id="image" type="file" name="image">
-              <button id="closeModalButton">ok</button>
+              <label for="image" class="image_button">Select Image</label>
+              <input id="image" type="file" name="image" accept="image/*" style="display: none;">
+              <button id="closeModalButton">Ok</button>
+              <a class="dropdown-toggle1" href="/todos">&nbsp;Back</a>
             </form>
               {{-- <button id="closeModalButton">close</button> --}}
               <!-- タイトルのエラーメッセージ -->
-              @if ($errors->has('title'))
+              {{-- @if ($errors->has('title'))
               <p style="color:red;">{{ $errors->first('title') }}</p>
-              @endif
+              @endif --}}
 
               <!-- 詳細のエラーメッセージ -->
-              @if ($errors->has('detail'))
+              {{-- @if ($errors->has('detail'))
               <p style="color:red;">{{ $errors->first('detail') }}</p>
+              @endif --}}
+
+              <!-- エラーメッセージ -->
+              @if ($errors->has('title'))
+              <p class="error-message" style="color:red;">{{ $errors->first('title') }}</p>
+              @endif
+
+              @if ($errors->has('contents'))
+              <p class="error-message" style="color:red;">{{ $errors->first('contents') }}</p>
               @endif
 
             </div>
@@ -51,22 +62,25 @@
         <div id="big_box">
             @foreach($todos as $todo)
             <div id="small_box">
-                <img src="" alt="アイコン" width="100px">
-                <h5 class="card-title">タイトル : {{ $todo->title }}<br></h5>
-                <p class="card-text">内容 : {{ $todo->contents }}<br></p>
+                <img src="{{ asset('storage/' . $todo->image_at) }}" alt="アイコン" width="210px">
+                <label class="ECM_CheckboxInput">
+                    <input class="ECM_CheckboxInput-Input" type="checkbox">
+                    <span class="ECM_CheckboxInput-DummyInput"></span>
+                    {{-- <span class="ECM_CheckboxInput-LabelText"> --}}
+                        <h5 class="card-title">{{ $todo->title }}<br></h5>
+                    {{-- </span> --}}
+                </label>
+                <p class="card-text">{{ $todo->contents }}</p>
                 <!-- 編集モーダル用のオーバーレイ -->
                 <div id="modalOverlay1"></div>
                 <!-- 編集ボタン -->
-                <form action="{{ route('todos.update', $todo->id) }}" method="POST">
-                    @csrf
-                    <div class="button">
-                    <button id="openModalButton1">edit</button>
-                </form>
+                <div class="button">
+                <button id="openModalButton1">Edit</button>
 
                 <form id="deleteForm{{ $todo->id }}" action="{{ route('todos.destroy', $todo->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="button" class="delete-button" data-id="{{ $todo->id }}">delete</button>
+                    <button type="button" class="delete-button" data-id="{{ $todo->id }}">Delete</button>
                 </form>
                 </div>
                 <!-- 編集モーダル -->
@@ -78,6 +92,8 @@
                   <br>
                   <button id="closeModalButton1">ok</button>
                   <button id="closeModalButton1">close</button>
+                </form>
+                
             </div>
         </div>
         @endforeach
