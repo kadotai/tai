@@ -68,7 +68,7 @@ class TodoController extends Controller
         $todo = Task::find($id);
 
         $todo -> title = $request -> input('title');
-        $todo -> body = $request -> input('body');
+        $todo -> contents = $request -> input('contents');
         $todo -> save();
 
         return redirect()->route('todos.index');
