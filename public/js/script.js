@@ -74,11 +74,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.querySelectorAll('.delete-button').forEach(button => {
     button.addEventListener('click', function (event) {
-        const todoId = button.getAttribute('data-id'); // タスクIDを取得
+        const todoId = button.getAttribute('data-id'); 
         if (!confirm('本当に削除しますか？')) {
-            event.preventDefault(); // キャンセルの場合
+            event.preventDefault(); 
         } else {
-            // 対応するフォームを送信
             document.getElementById(`deleteForm${todoId}`).submit();
         }
     });

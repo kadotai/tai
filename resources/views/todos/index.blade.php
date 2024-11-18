@@ -60,6 +60,7 @@
     <main>
         
         <div id="big_box">
+
             @foreach($todos as $todo)
             <div id="small_box">
                 <img src="{{ asset('storage/' . $todo->image_at) }}" alt="アイコン" width="210px">
@@ -75,29 +76,44 @@
                 <div id="modalOverlay1"></div>
                 <!-- 編集ボタン -->
                 <div class="button">
-                <button id="openModalButton1">Edit</button>
+                    <button id="openModalButton1" data-id="{{ $todo->id }}" data-title="{{ $todo->title }}" data-contents="{{ $todo->contents }}">Edit</button>
 
-                <form id="deleteForm{{ $todo->id }}" action="{{ route('todos.destroy', $todo->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="button" class="delete-button" data-id="{{ $todo->id }}">Delete</button>
-                </form>
+                    <form id="deleteForm{{ $todo->id }}" action="{{ route('todos.destroy', $todo->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" class="delete-button" data-id="{{ $todo->id }}">Delete</button>
+                    </form>
                 </div>
+
                 <!-- 編集モーダル -->
-                <form actions="{{ route('todos.update', $todo->id) }}" method="POST">
-                <div id="modal1">
-                  <input type="text" value="{{ $todo->title }} "placeholder="Title">
-                  <br>
-                  <input type="text" value="{{ $todo->contents }}" placeholder="Detail">
-                  <br>
-                  <button id="closeModalButton1">ok</button>
-                  <button id="closeModalButton1">close</button>
-                </form>
-                
-            </div>
-            
+                <div id="modal{{ $todo->id }}" class="modal" style="display: none;">
+                    <form action="{{ route('todos.update', $todo->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <input type="text" name="title" value="{{ $todo->title }}" placeholder="Title">
+                        <br>
+                        <input type="text" name="contents" value="{{ $todo->contents }}" placeholder="Detail">
+                        <br>
+                        <button type="submit">Ok</button>
+                        <button type="button" class="closeModalButton">Close</button>
+                    </form>
+                </div>
+
+                {{-- 前のやつ、念のため残している --}}
+                {{-- <form action="{{ route('todos.update', $todo->id) }}" method="POST">
+                    @csrf
+                    @method('put')
+                    <div id="modal1">
+                        <input type="text" placeholder="Title">
+                        <br>
+                        <input type="text" placeholder="Detail">
+                        <br>
+                        <button id="closeModalButton1">ok</button>
+                        <button id="closeModalButton1">close</button>
+                    </div>
+                </form> --}}
         </div>
-        @endforeach
+            @endforeach
     </main>
     <footer>
         <p>&copy; 2024 Tai team</p>
