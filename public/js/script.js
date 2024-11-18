@@ -54,22 +54,50 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalOverlay1 = document.getElementById('modalOverlay1');
     const openModalButton1 = document.getElementById('openModalButton1');
     const closeModalButton1 = document.getElementById('closeModalButton1');
+    // const editButtons = document.querySelectorAll('.edit-button');
+    // const closeEdit = document.querySelectorAll('.close-modal'); 
 
     // 編集モーダルの通常の動作
     if (openModalButton1) {
-        openModalButton1.addEventListener('click', function() {
+        openModalButton1.addEventListener('click', function () {
             modal1.style.display = 'block';
             modalOverlay1.style.display = 'block';
         });
     }
 
     if (closeModalButton1) {
-        closeModalButton1.addEventListener('click', function() {
+        closeModalButton1.addEventListener('click', function () {
             modal1.style.display = 'none';
             modalOverlay1.style.display = 'none';
         });
     }
+
+    // //モーダルを開く処理
+    // editButtons.forEach(button => {
+    //     button.addEventListener('click', () => {
+    //         const todoId = button.dataset.id;
+    //         const modal = document.getElementById(`modal${todoId}`);
+    //         if (modal) {
+    //             modal.style.display = 'block';
+    //         }
+    //     });
+    // });
+
+    // //モーダルを閉じる処理
+    // closeEdit.forEach(button => {
+    //     button.addEventListener('click', () => {
+    //         const modal = button.closest('.modal');
+    //         if(modal) {
+    //             modal.style.display = 'none';
+    //         }
+
+    //     });
+    // });
 });
+
+console.log(editButtons); // 配列として要素が取得されているか確認
+console.log(closeEdit);
+
 
 
 document.querySelectorAll('.delete-button').forEach(button => {
