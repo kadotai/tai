@@ -25,9 +25,9 @@
             <form action="{{ route('todos.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
               <h2>What will you do?</h2>
-              <input type="text" name='title' placeholder="Title">
+              <input type="text" name='title' placeholder="Title" maxlength="30">
               <br>
-              <input type="text" name='contents' placeholder="Contents">
+              <input type="text" name='contents' placeholder="Contents" maxlength="140">
               <br>
               <label for="image">Image:</label>
               <input id="image" type="file" name="image" accept="image/*">
