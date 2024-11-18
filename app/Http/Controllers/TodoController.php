@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use App\Http\Controllers;
+// use App\Http\Controllers;
 use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+// use Illuminate\Support\Facades\Storage;
 
 class TodoController extends Controller
 {
     //
-    function index()
+    public function index()
     {   
         $todos = Task::all();
         //dd($todos);
@@ -20,20 +20,20 @@ class TodoController extends Controller
     }
 
 
-    function store(Request $request)
+    public function store(Request $request)
     {
     // バリデーションを追加
     $validated = $request->validate([
-        'title' => 'required|string|max:255',
-        'contents' => 'required|string',
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // 画像ファイルのバリデーション
+        'title' => 'required|string|max:30',
+        'contents' => 'required|string|max:140',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif', // 画像ファイルのバリデーション
     ]);
 
         // dd($request);
         $post = new Task;
         $post -> title = $request -> title;
         $post -> contents = $request -> contents;
-        $post -> image_at = $request -> image_at;
+        // $post -> image_at = $request -> image_at;
         $post -> user_id = Auth::id();
 
     // 画像がアップロードされているかを確認
