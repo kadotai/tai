@@ -29,11 +29,17 @@
               <br>
               <textarea class="text2" name='contents' placeholder="Contents" maxlength="140"></textarea>
               <br>
+<<<<<<< Updated upstream
               <label for="image" class="image_button">Select Image</label>
               <input id="image" type="file" name="image" accept="image/*" style="display: none;">
               <button id="closeModalButton">Ok</button>
               <a class="dropdown-toggle1" href="/todos">&nbsp;Back</a>
 
+=======
+              <label for="image">Chose your Image</label>
+              <input id="image" type="file" name="image" accept="image/*">
+              <button id="closeModalButton">ok</button>
+>>>>>>> Stashed changes
             </form>
               {{-- <button id="closeModalButton">close</button> --}}
               <!-- タイトルのエラーメッセージ -->
