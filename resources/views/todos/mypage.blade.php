@@ -23,6 +23,20 @@
             <img src="{{ asset('images/fish.png') }}" alt="">
             <p class="name">UserName:{{ Auth::user()->name }}</p>
         </div>
+    <div class="uranai">
+        @foreach ( $dateFortune as $fortune )
+  <section>
+    <h2>{{ $fortune['sign'] }}</h2>
+    <ul>
+      <li>ランク: {{ $fortune['rank'] }}</li>
+      <li>内容: {{ $fortune['content'] }}</li>
+      <li>ラッキーアイテム: {{ $fortune['item'] }}</li>
+      <li>ラッキーカラー: {{$fortune['color']}}</li>
+      <li>---------</li>
+    </ul>
+  </section>
+  @endforeach
+</div>
     </main>
     <footer>
         <p>&copy; 2024 Tai team</p>
