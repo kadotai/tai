@@ -42,6 +42,9 @@ class TodoController extends Controller
         $path = $request->file('image')->store('images', 'public');  // スペースを含まない
         $post->image_at = $path; // パスをデータベースに保存
         //dd($path);
+        } else {
+            // デフォルト画像を設定
+            $post->image_at = 'images/default.png';
         }
 
         $post -> save();

@@ -60,10 +60,13 @@
     <main>
         
         <div id="big_box">
-
             @foreach($todos as $todo)
             <div id="small_box">
+                @if($todo->image_at === 'images/default.png')
+                <img src="{{ asset($todo->image_at) }}" alt="HITODE" width="100px">
+                @else
                 <img src="{{ asset('storage/' . $todo->image_at) }}" alt="アイコン" width="210px">
+                @endif
                 <label class="ECM_CheckboxInput">
                     <input class="ECM_CheckboxInput-Input" type="checkbox">
                     <span class="ECM_CheckboxInput-DummyInput"></span>
