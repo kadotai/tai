@@ -76,7 +76,7 @@
                 <div id="modalOverlay1"></div>
                 <!-- 編集ボタン -->
                 <div class="button">
-                    <button id="openModalButton1" data-id="{{ $todo->id }}" data-title="{{ $todo->title }}" data-contents="{{ $todo->contents }}">Edit</button>
+                    <button id="openModalButton1" class="edit-button" data-id="{{ $todo->id }}" data-title="{{ $todo->title }}" data-contents="{{ $todo->contents }}">Edit</button>
 
                     {{-- 削除 --}}
                     <form id="deleteForm{{ $todo->id }}" action="{{ route('todos.destroy', $todo->id) }}" method="POST">
