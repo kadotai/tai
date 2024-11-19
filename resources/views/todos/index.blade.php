@@ -93,28 +93,26 @@
 
                 <!-- 編集モーダル -->
                 @foreach($todos as $todo)
-                <div id="modal{{ $todo->id }}" class="modal" style="display: none;">
-                    <form action="{{ route('todos.update', $todo->id) }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        @method('PUT')
-                        <input type="text" name="title" value="{{ $todo->title }}" placeholder="Title">
-                        <br>
-                        <input type="text" name="contents" value="{{ $todo->contents }}" placeholder="Detail">
-                        <br>
-                        <label for="image" class="image_button">Select Image</label>
-                        <input id="image" type="file" name="image" accept="image/*" style="display: none;">
-                        <div id="imagePreview">
-                            <div id="imagePreview">
-                                @if($todo->image_at)
-                                    <img src="{{ asset('storage/' . $todo->image_at) }}" alt="Current Image" width="100px">
-                                @endif
-                            </div>
-                        </div>
-                        <button type="submit">Ok</button>
-                        <button type="button" class="closeModalButton">Close</button>
-                    </form>
-                </div>
-                @endforeach
+    <div id="modal{{ $todo->id }}" class="modal" style="display: none;">
+        <form action="{{ route('todos.update', $todo->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            <input type="text" name="title" value="{{ $todo->title }}" placeholder="Title">
+            <br>
+            <input type="text" name="contents" value="{{ $todo->contents }}" placeholder="Detail">
+            <br>
+            <label for="image" class="image_button">Select Image</label>
+            <input id="image" type="file" name="image" accept="image/*" style="display: none;">
+            <div id="imagePreview">
+                @if($todo->image_at)
+                    <img src="{{ asset('storage/' . $todo->image_at) }}" alt="Current Image" width="100px">
+                @endif
+            </div>
+            <button type="submit">Ok</button>
+            <button type="button" class="closeModalButton">Close</button>
+        </form>
+    </div>
+@endforeach
 
                 {{-- 前のやつ、念のため残している --}}
                 {{-- <form action="{{ route('todos.update', $todo->id) }}" method="POST">

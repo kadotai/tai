@@ -79,16 +79,30 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
+
     const editButtons = document.querySelectorAll('.edit-button');
 
     editButtons.forEach(button => {
         button.addEventListener('click', () => {
             const todoId = button.dataset.id;
+            const todoTitle = button.dataset.title;
+            const todoContents = button.dataset.contents;
+
             const modal = document.getElementById('modal${todoId}');
 
             if (modal) {
                 modal.style.display = 'block';
             }
+            const titleInput = modal.querySelector('input[name="title"]');
+                const contentsInput = modal.querySelector('input[name="contents"]');
+
+                if (titleInput) {
+                    titleInput.value = todoTitle; // タイトルをセット
+                }
+
+                if (contentsInput) {
+                    contentsInput.value = todoContents; // 内容をセット
+                }
         });
     });
 
@@ -98,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', () => {
             const modal = button.closest('.modal');
             if(modal) {
-                modal.style.dispaly = 'none';
+                modal.style.display = 'none';
             }
         });
     });
