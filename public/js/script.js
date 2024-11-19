@@ -52,62 +52,61 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     const modal1 = document.getElementById('modal1');
     const modalOverlay1 = document.getElementById('modalOverlay1');
-    const openModalButton1 = document.getElementById('openModalButton1');
-    const closeModalButton1 = document.getElementById('closeModalButton1');
+
+
+        // ページロード時にエラーがある場合、モーダルを自動的に開く
+        if (modal && modalOverlay && document.querySelector('.error-message')) {
+            modal.style.display = 'block';
+            modalOverlay.style.display = 'block';
+        }
+    
+        // 通常のモーダルを開くボタンの動作
+        if (openModalButton) {
+            openModalButton.addEventListener('click', function() {
+                modal.style.display = 'block';
+                modalOverlay.style.display = 'block';
+            });
+        }
+    
+        // モーダルを閉じるボタンの動作
+        if (closeModalButton) {
+            closeModalButton.addEventListener('click', function() {
+                modal.style.display = 'none';
+                modalOverlay.style.display = 'none';
+            });
+        }
+
+});
+
+document.addEventListener('DOMContentLoaded', function() {
     const editButtons = document.querySelectorAll('.edit-button');
-    const closeEdit = document.querySelectorAll('.close-modal'); 
-
-    // 編集モーダルの通常の動作
-    if (openModalButton1) {
-        openModalButton1.addEventListener('click', function() {
-            modal1.style.display = 'block';
-            modalOverlay1.style.display = 'block';
-        });
-    }
-
-    if (closeModalButton1) {
-        closeModalButton1.addEventListener('click', function() {
-            modal1.style.display = 'none';
-            modalOverlay1.style.display = 'none';
-        });
-    }
 
     editButtons.forEach(button => {
         button.addEventListener('click', () => {
             const todoId = button.dataset.id;
-            const modal = document.getElementById(`modal${todoId}`);
+            const modal = document.getElementById('modal${todoId}');
+
             if (modal) {
                 modal.style.display = 'block';
             }
         });
     });
 
-    closeEdit.forEach(button => {
+    const closeModalButtons = document.querySelectorAll('.closeModalButton');
+
+    closeModalButtons.forEach(button => {
         button.addEventListener('click', () => {
-            const modal = button.closest('.modal1');
+            const modal = button.closest('.modal');
             if(modal) {
-                modal.style.display = 'none';
+                modal.style.dispaly = 'none';
             }
         });
     });
 });
 
 
-
-document.querySelectorAll('.delete-button').forEach(button => {
-    button.addEventListener('click', function (event) {
-        const todoId = button.getAttribute('data-id'); 
-        if (!confirm('本当に削除しますか？')) {
-            event.preventDefault(); 
-        } else {
-            document.getElementById(`deleteForm${todoId}`).submit();
-        }
-    });
-});
-
-
-console.log(editButtons); 
-console.log(closeEdit);
+// console.log(editButtons); 
+// console.log(closeEdit);
 
 
 

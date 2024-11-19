@@ -74,12 +74,25 @@ class TodoController extends Controller
         $request->validate([
             'title' => 'required|max:30',
             'contents' => 'required|string|max:140',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         ]);
 
         $todo = Task::find($id);
 
         $todo -> title = $request -> input('title');
         $todo -> contents = $request -> input('contents');
+
+        if ($request->hasFile('image')) {
+            if ($todo->image_at) {
+                Task::disk('public')->delete($todo->image_at);
+            }
+            $path = $request->file('image')->store('images','public');
+            $todo->image_at = $path;
+        }
+        // else {
+        //     $todo->image_at ='';
+        // }
+
         $todo -> save();
 
         return redirect()->route('todos.index');
