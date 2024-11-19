@@ -59,20 +59,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 編集モーダルの通常の動作
     if (openModalButton1) {
-        openModalButton1.addEventListener('click', function () {
+        openModalButton1.addEventListener('click', function() {
             modal1.style.display = 'block';
             modalOverlay1.style.display = 'block';
         });
     }
 
     if (closeModalButton1) {
-        closeModalButton1.addEventListener('click', function () {
+        closeModalButton1.addEventListener('click', function() {
             modal1.style.display = 'none';
             modalOverlay1.style.display = 'none';
         });
     }
 
-    //モーダルを開く処理
     editButtons.forEach(button => {
         button.addEventListener('click', () => {
             const todoId = button.dataset.id;
@@ -83,18 +82,29 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // モーダルを閉じる処理
     closeEdit.forEach(button => {
         button.addEventListener('click', () => {
             const modal = button.closest('.modal1');
             if(modal) {
                 modal.style.display = 'none';
             }
-
         });
     });
-
 });
+
+
+
+document.querySelectorAll('.delete-button').forEach(button => {
+    button.addEventListener('click', function (event) {
+        const todoId = button.getAttribute('data-id'); 
+        if (!confirm('本当に削除しますか？')) {
+            event.preventDefault(); 
+        } else {
+            document.getElementById(`deleteForm${todoId}`).submit();
+        }
+    });
+});
+
 
 console.log(editButtons); 
 console.log(closeEdit);

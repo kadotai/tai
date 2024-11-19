@@ -78,6 +78,7 @@
                 <div class="button">
                     <button id="openModalButton1" class="edit-button" data-id="{{ $todo->id }}" data-title="{{ $todo->title }}" data-contents="{{ $todo->contents }}">Edit</button>
 
+
                     {{-- 削除 --}}
                     <form id="deleteForm{{ $todo->id }}" action="{{ route('todos.destroy', $todo->id) }}" method="POST">
                         @csrf
@@ -95,6 +96,8 @@
                         <br>
                         <input type="text" name="contents" value="{{ $todo->contents }}" placeholder="Detail">
                         <br>
+                        <label for="image" class="image_button" >Select Image</label>
+                        <input id="image" type="file" name="image" accept="image/*" style="display: none;">
                         <button type="submit">Ok</button>
                         <button type="button" class="closeModalButton">Close</button>
                     </form>
