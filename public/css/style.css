@@ -333,6 +333,9 @@ footer {
   font-size: 25px;
 }
 
-.uranai {
+.uranai_box {
+  background-color: #D4BDAC;
   padding: 30px;
+  margin: 20px;
+  border-radius: 20px;
 }

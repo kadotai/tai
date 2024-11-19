@@ -25,14 +25,13 @@
         </div>
     <div class="uranai">
         @foreach ( $dateFortune as $fortune )
-  <section>
+  <section class="uranai_box">
     <h2>{{ $fortune['sign'] }}</h2>
     <ul>
       <li>ランク: {{ $fortune['rank'] }}</li>
       <li>内容: {{ $fortune['content'] }}</li>
       <li>ラッキーアイテム: {{ $fortune['item'] }}</li>
       <li>ラッキーカラー: {{$fortune['color']}}</li>
-      <li>---------</li>
     </ul>
   </section>
   @endforeach
