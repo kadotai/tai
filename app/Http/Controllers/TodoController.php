@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
 
 // use Illuminate\Support\Facades\Storage;
 
@@ -34,10 +35,18 @@ class TodoController extends Controller
 
     function mypage()
     {
-        return view('todos.mypage');
+        $date = date('Y/m/d');
+        $resp = Http::get('http://api.jugemkey.jp/api/horoscope/free/' . $date);
+        $resp = $resp->json();
+        $horoscope = $resp['horoscope'];
+        $dateFortune = $horoscope[$date];
+        array_multisort(
+            array_column($dateFortune, 'rank'), SORT_ASC, $dateFortune
+        );
+
+        return view('todos.mypage', compact('dateFortune'));
     }
     
-
 
     public function store(Request $request)
     {
