@@ -51,7 +51,9 @@ document.addEventListener('DOMContentLoaded', function() {
 // 以下は編集用モーダルのスクリプト（編集モーダルにも同様の変更が必要な場合はこちらを修正）
 document.addEventListener('DOMContentLoaded', function() {
     const modal1 = document.getElementById('modal1');
-    const modalOverlay1 = document.getElementById('modalOverlay1');
+    const modalOverlay1 = document.getElementById('modalOverlay1');    
+    const openModalButton = document.getElementById('openModalButton1');
+    const closeModalButton = document.getElementById('closeModalButton1');
 
 
         // ページロード時にエラーがある場合、モーダルを自動的に開く
@@ -88,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const todoTitle = button.dataset.title;
             const todoContents = button.dataset.contents;
 
-            const modal = document.getElementById('modal${todoId}');
+            const modal = document.getElementById(`modal${todoId}`);
 
             if (modal) {
                 modal.style.display = 'block';
@@ -103,6 +105,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (contentsInput) {
                     contentsInput.value = todoContents; // 内容をセット
                 }
+
+                
+            const imageInput = modal.querySelector(`#image${todoId}`);
+            const imagePreview = modal.querySelector(`#imagePreview${todoId}`);
+
+            imageInput.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img = new Image();
+                        img.src = e.target.result;
+                        img.width = 100; // プレビューのサイズ設定
+                        imagePreview.innerHTML = ''; // 既存の画像を削除
+                        imagePreview.appendChild(img); // 新しい画像を追加
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
         });
     });
 

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 // use App\Http\Controllers;
 use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
 // use Illuminate\Support\Facades\Storage;
 
 
@@ -94,14 +96,11 @@ class TodoController extends Controller
 
         if ($request->hasFile('image')) {
             if ($todo->image_at) {
-                Task::disk('public')->delete($todo->image_at);
+                Storage::disk('public')->delete($todo->image_at);
             }
             $path = $request->file('image')->store('images','public');
             $todo->image_at = $path;
         }
-        // else {
-        //     $todo->image_at ='';
-        // }
 
         $todo -> save();
 
