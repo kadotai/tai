@@ -41,10 +41,10 @@ class TodoController extends Controller
     ]);
 
         // dd($request);
-        $post = new Task;
+        $post = new Task();
         $post -> title = $request -> title;
         $post -> contents = $request -> contents;
-        // $post -> image_at = $request -> image_at;
+        $post -> image_at = null;
         $post -> user_id = Auth::id();
 
     // 画像がアップロードされているかを確認
@@ -53,15 +53,19 @@ class TodoController extends Controller
         $path = $request->file('image')->store('images', 'public');  // スペースを含まない
         $post->image_at = $path; // パスをデータベースに保存
         //dd($path);
+        } else {
+            // デフォルト画像を設定
+            $post->image_at = 'images/default.png';
         }
 
         $post -> save();
 
-        return redirect()->route('todos.index');
+        return redirect()->route('todos.index')->with('success', 'タスクが作成されました！');
 
     }
+    
 
-    function destroy($id)
+    public function destroy($id)
     {
         $todo = Task::find($id);
         $todo -> delete();
@@ -69,7 +73,7 @@ class TodoController extends Controller
         return redirect()->route('todos.index');
     }
 
-    function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'title' => 'required|max:30',
@@ -82,7 +86,7 @@ class TodoController extends Controller
         $todo -> contents = $request -> input('contents');
         $todo -> save();
 
-        return redirect()->route('todos.index');
+        return redirect()->route('todos.index')->with('success', 'タスクが更新されました！');
         
     }
 
@@ -97,24 +101,24 @@ class TodoController extends Controller
 //     バリデーション通過後の処理
 //     $post->update($validatedData); // 更新処理など
 
-function store(Request $request)
-{
-    // バリデーション
-    $validatedData = $request->validate([
-        'title' => 'required',
-        'contents' => 'required',
-    ]);
+// function store(Request $request)
+// {
+//     // バリデーション
+//     $validatedData = $request->validate([
+//         'title' => 'required',
+//         'contents' => 'required',
+//     ]);
 
-    // 更新対象のタスクを取得
-    $post = Task::find($request->id); // IDをリクエストから取得する例
+//     // 更新対象のタスクを取得
+//     $post = Task::find($request->id); // IDをリクエストから取得する例
 
-    // データが存在すれば更新
-    if ($post) {
-    $post->update($validatedData);
-    } else {
-    return redirect()->route('todos.index')->with('error', '対象のタスクが見つかりません');
-    }
+//     // データが存在すれば更新
+//     if ($post) {
+//     $post->update($validatedData);
+//     } else {
+//     return redirect()->route('todos.index')->with('error', '対象のタスクが見つかりません');
+//     }
 
-    // 更新後、リダイレクト
-    return redirect()->route('todos.index')->with('success', 'タスクを更新しました');
-}
+//     // 更新後、リダイレクト
+//     return redirect()->route('todos.index')->with('success', 'タスクを更新しました');
+// }
