@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>TaiToDo</title>
     <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 </head>
 <body>
@@ -16,7 +16,7 @@
             <button id="openModalButton">New Post</button>
             {{-- ユーザーネーム --}}
             <div class="dropdown nav">
-                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="dropdown-toggle" href="/todos/mypage" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ Auth::user()->name }}
                 </a>
                 <a class="dropdown-toggle1" href="/logout">&nbsp;Logout</a>
@@ -75,7 +75,7 @@
                     <input class="ECM_CheckboxInput-Input" type="checkbox">
                     <span class="ECM_CheckboxInput-DummyInput"></span>
                     {{-- <span class="ECM_CheckboxInput-LabelText"> --}}
-                        <h5 class="card-title">{{ $todo->title }}<br></h5>
+                        <h5 class="card-title">&nbsp;{{ $todo->title }}<br></h5>
                     {{-- </span> --}}
                 </label>
                 <p class="card-text">{{ $todo->contents }}</p>

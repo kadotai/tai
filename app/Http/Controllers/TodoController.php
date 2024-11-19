@@ -9,6 +9,7 @@ use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
 // use Illuminate\Support\Facades\Storage;
 
+
 class TodoController extends Controller
 {
     //
@@ -27,6 +28,11 @@ class TodoController extends Controller
         }
     
         return view('todos.index', ['todos' => $todos, 'search' => $query]);
+    }
+
+    function mypage()
+    {
+        return view('todos.mypage');
     }
     
 
@@ -89,6 +95,8 @@ class TodoController extends Controller
         return redirect()->route('todos.index')->with('success', 'タスクが更新されました！');
         
     }
+
+
 
 }
 // public function store(Request $request)
