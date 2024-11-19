@@ -12,12 +12,23 @@ use Illuminate\Support\Facades\Auth;
 class TodoController extends Controller
 {
     //
-    public function index()
-    {   
-        $todos = Task::all();
-        //dd($todos);
-        return view('todos.index',['todos'=>$todos]);
+    public function index(Request $request)
+    {
+        $query = $request->input('search');
+    
+        if ($query) {
+            // 検索クエリが存在する場合はフィルタリング
+            $todos = Task::where('title', 'like', "%$query%")
+                ->orWhere('contents', 'like', "%$query%")
+                ->get();
+        } else {
+            // クエリがない場合は全件取得
+            $todos = Task::all();
+        }
+    
+        return view('todos.index', ['todos' => $todos, 'search' => $query]);
     }
+    
 
 
     public function store(Request $request)

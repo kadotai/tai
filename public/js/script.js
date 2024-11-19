@@ -122,3 +122,18 @@ document.querySelectorAll('.delete-button').forEach(button => {
         }
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const searchForm = document.getElementById('searchForm');
+
+    if (searchInput && searchForm) {
+        searchForm.addEventListener('submit', function(event) {
+            const query = searchInput.value.trim();
+            if (query === '') {
+                event.preventDefault();
+                alert('検索ワードを入力してください。');
+            }
+        });
+    }
+});
