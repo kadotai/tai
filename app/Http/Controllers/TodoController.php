@@ -9,7 +9,7 @@ use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
-
+use Illuminate\Support\Facades\Log;
 // use Illuminate\Support\Facades\Storage;
 
 
@@ -116,25 +116,38 @@ class TodoController extends Controller
         $todo -> save();
 
         return redirect()->route('todos.index')->with('success', 'タスクが更新されました！');
-        
-    }
 
-    // 追加: 期日を更新するメソッド
-    public function updateDueDate(Request $request, $id)
-    {
-        dd($request->all());
         $request->validate([
             'due_date' => 'required|date|after_or_equal:today', // 期日が今日以降であることを確認
         ]);
 
         $todo = Task::find($id);
 
-        dd($todo->due_date, $request->input('due_date'));
+        if (!$todo) {
+            return redirect()->route('todos.index')->with('error', 'タスクが見つかりません');
+        }
+
+        $todo->due_date = $request->input('due_date');
+        $todo->save();
+
+        return redirect()->route('todos.index')->with('success', '期日が更新されました！');
+        
+    }
+
+    // 追加: 期日を更新するメソッド
+    public function updateDueDate(Request $request, $id)
+    {
+
+        $request->validate([
+            'due_date' => 'required|date|after_or_equal:today', // 期日が今日以降であることを確認
+        ]);
+
+        $todo = Task::find($id);
 
         if (!$todo) {
             return redirect()->route('todos.index')->with('error', 'タスクが見つかりません');
         }
-        dd($request->input('due_date'));
+
         $todo->due_date = $request->input('due_date');
         $todo->save();
 

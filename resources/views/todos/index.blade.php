@@ -124,10 +124,9 @@
                 </div>
 
                 <!-- 編集モーダル -->
-
                 @foreach($todos as $todo)
                 <div id="modalEdit{{ $todo->id }}" class="modalEdit" style="display: none;">
-                    <form action="{{ route('todos.update', $todo->id) }}" method="POST" enctype="multipart/form-data">
+                    {{-- <form action="{{ route('todos.update', $todo->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <input type="text" name="title" value="{{ $todo->title }}" placeholder="Title">
@@ -140,7 +139,7 @@
                             @if($todo->image_at)
                                 <img src="{{ asset('storage/' . $todo->image_at) }}" alt="Current Image" width="100px">
                             @endif
-                        </div>
+                        </div> --}}
                 
                         <!-- 期日編集フォーム -->
                         <form action="{{ route('todos.updateDueDate', $todo->id) }}" method="POST">
@@ -152,6 +151,23 @@
                             <button type="submit" id="submitButton{{ $todo->id }}">Ok</button>
                             <button type="button" class="closeModalButton">Close</button>
                         </form>
+                           {{-- 成功メッセージ --}}
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+
+                            {{-- エラーメッセージ --}}
+                            @if($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                        @endif
                     </form>
                 </div>
                 @endforeach
