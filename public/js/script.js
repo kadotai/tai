@@ -99,11 +99,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 const contentsInput = modal.querySelector('input[name="contents"]');
 
                 if (titleInput) {
-                    titleInput.value = todoTitle; // タイトルをセット
+                    titleInput.value = todoTitle; 
                 }
 
                 if (contentsInput) {
-                    contentsInput.value = todoContents; // 内容をセット
+                    contentsInput.value = todoContents; 
                 }
 
                 

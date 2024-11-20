@@ -96,7 +96,7 @@
 
                 <!-- 編集モーダル -->
                 @foreach($todos as $todo)
-                    <div id="modal{{ $todo->id }}" class="modal" style="display: none;">
+                <div id="modal{{ $todo->id }}" class="modal" style="display: none;">
                     <form action="{{ route('todos.update', $todo->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
@@ -111,25 +111,11 @@
                         <img src="{{ asset('storage/' . $todo->image_at) }}" alt="Current Image" width="100px">
                     @endif
                     </div>
-                    <button type="submit" id="closeModalButton1">Ok</button>
-                    <button type="button" id="closeModalButton">Close</button>
+                    <button type="submit" id="submitButton{{ $todo->id }}">Ok</button>
+                    <button type="button" class="closeModalButton">Close</button>
                     </form>
-                    </div>
+                </div>
                 @endforeach
-
-                {{-- 前のやつ、念のため残している --}}
-                {{-- <form action="{{ route('todos.update', $todo->id) }}" method="POST">
-                    @csrf
-                    @method('put')
-                    <div id="modal1">
-                        <input type="text" placeholder="Title">
-                        <br>
-                        <input type="text" placeholder="Detail">
-                        <br>
-                        <button id="closeModalButton1">ok</button>
-                        <button id="closeModalButton1">close</button>
-                    </div>
-                </form> --}}
         </div>
             @endforeach
     </main>
@@ -139,23 +125,19 @@
 </body>
 <script src="{{ asset('js/script.js') }}"></script>
 <script>
-    // 画像プレビュー用のスクリプト（画像選択後に表示）
     document.getElementById('image').addEventListener('change', function(e) {
         var reader = new FileReader();
         
-        // ファイルが選択されたときに発火
         reader.onload = function(event) {
             var preview = document.getElementById('imagePreview');
-            preview.innerHTML = '<img src="' + event.target.result + '" width="100px">';  // プレビュー画像を更新
+            preview.innerHTML = '<img src="' + event.target.result + '" width="100px">'; 
         };
 
-        // ファイルを読み込む
         if (e.target.files.length > 0) {
             reader.readAsDataURL(e.target.files[0]);
         } else {
-            // 画像が選択されていない場合は、プレビューを消去する
             var preview = document.getElementById('imagePreview');
-            preview.innerHTML = '';  // 既存のプレビュー画像を削除
+            preview.innerHTML = ''; 
         }
     });
 </script>
