@@ -55,6 +55,7 @@ class TodoController extends Controller
         'title' => 'required|string|max:30',
         'contents' => 'required|string|max:140',
         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif', // 画像ファイルのバリデーション
+        'due_date' => 'nullable|date|after_or_equal:today', // 期日のバリデーションを追加
     ]);
 
         // dd($request);
@@ -63,6 +64,7 @@ class TodoController extends Controller
         $post -> contents = $request -> contents;
         $post -> image_at = null;
         $post -> user_id = Auth::id();
+        $post->due_date = $request->due_date; // 期日を保存
 
     // 画像がアップロードされているかを確認
         if ($request->hasFile('image')) {
@@ -117,7 +119,24 @@ class TodoController extends Controller
         
     }
 
+    // 追加: 期日を更新するメソッド
+    public function updateDueDate(Request $request, $id)
+    {
+        $request->validate([
+            'due_date' => 'required|date|after_or_equal:today', // 期日が今日以降であることを確認
+        ]);
 
+        $todo = Task::find($id);
+
+        if (!$todo) {
+            return redirect()->route('todos.index')->with('error', 'タスクが見つかりません');
+        }
+
+        $todo->due_date = $request->input('due_date');
+        $todo->save();
+
+        return redirect()->route('todos.index')->with('success', '期日が更新されました！');
+    }
 
 }
 // public function store(Request $request)
