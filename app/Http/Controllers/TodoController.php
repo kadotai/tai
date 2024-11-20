@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 // use App\Http\Controllers;
 use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
 
 // use Illuminate\Support\Facades\Storage;
@@ -96,12 +97,22 @@ class TodoController extends Controller
         $request->validate([
             'title' => 'required|max:30',
             'contents' => 'required|string|max:140',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         ]);
 
         $todo = Task::find($id);
 
         $todo -> title = $request -> input('title');
         $todo -> contents = $request -> input('contents');
+
+        if ($request->hasFile('image')) {
+            if ($todo->image_at) {
+                Storage::disk('public')->delete($todo->image_at);
+            }
+            $path = $request->file('image')->store('images','public');
+            $todo->image_at = $path;
+        }
+
         $todo -> save();
 
         return redirect()->route('todos.index')->with('success', 'タスクが更新されました！');

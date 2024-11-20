@@ -94,8 +94,10 @@
                 <div id="modalOverlay1"></div>
                 <!-- 編集ボタン -->
                 <div class="button">
-                    <button id="openModalButton1" data-id="{{ $todo->id }}" data-title="{{ $todo->title }}" data-contents="{{ $todo->contents }}">Edit</button>
+                    <button id="openModalButton1" class="edit-button" data-id="{{ $todo->id }}" data-title="{{ $todo->title }}" data-contents="{{ $todo->contents }}">Edit</button>
 
+
+                    {{-- 削除 --}}
                     <form id="deleteForm{{ $todo->id }}" action="{{ route('todos.destroy', $todo->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
@@ -104,35 +106,30 @@
                 </div>
 
                 <!-- 編集モーダル -->
+                @foreach($todos as $todo)
                 <div id="modal{{ $todo->id }}" class="modal" style="display: none;">
-                    <form action="{{ route('todos.update', $todo->id) }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <input type="text" name="title" value="{{ $todo->title }}" placeholder="Title">
-                        <br>
-                        <input type="text" name="contents" value="{{ $todo->contents }}" placeholder="Detail">
-                        <br>
-                        <!-- 期日編集フォーム -->
-                        <label for="due_date_{{ $todo->id }}">Due Date:</label>
-                        <br>
-                        <button type="submit">Ok</button>
-                        <button type="button" class="closeModalButton">Close</button>
+                    <form action="{{ route('todos.update', $todo->id) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <input type="text" name="title" value="{{ $todo->title }}" placeholder="Title">
+                    <br>
+                    <input type="text" name="contents" value="{{ $todo->contents }}" placeholder="Detail">
+                    <br>
+                    <label for="image{{ $todo->id }}" class="image_button">Select Image</label>
+                    <input id="image{{ $todo->id }}" type="file" name="image" accept="image/*" style="display: none;">
+                    <div id="imagePreview{{ $todo->id }}">
+                    @if($todo->image_at)
+                        <img src="{{ asset('storage/' . $todo->image_at) }}" alt="Current Image" width="100px">
+                    @endif
+                    </div>
+                    <!-- 期日編集フォーム -->
+                    <label for="due_date_{{ $todo->id }}">Due Date:</label>
+                    <br>
+                    <button type="submit" id="submitButton{{ $todo->id }}">Ok</button>
+                    <button type="button" class="closeModalButton">Close</button>
                     </form>
                 </div>
-
-                {{-- 前のやつ、念のため残している --}}
-                {{-- <form action="{{ route('todos.update', $todo->id) }}" method="POST">
-                    @csrf
-                    @method('put')
-                    <div id="modal1">
-                        <input type="text" placeholder="Title">
-                        <br>
-                        <input type="text" placeholder="Detail">
-                        <br>
-                        <button id="closeModalButton1">ok</button>
-                        <button id="closeModalButton1">close</button>
-                    </div>
-                </form> --}}
+                @endforeach
         </div>
             @endforeach
     </main>
@@ -141,4 +138,21 @@
     </footer>
 </body>
 <script src="{{ asset('js/script.js') }}"></script>
+<script>
+    document.getElementById('image').addEventListener('change', function(e) {
+        var reader = new FileReader();
+        
+        reader.onload = function(event) {
+            var preview = document.getElementById('imagePreview');
+            preview.innerHTML = '<img src="' + event.target.result + '" width="100px">'; 
+        };
+
+        if (e.target.files.length > 0) {
+            reader.readAsDataURL(e.target.files[0]);
+        } else {
+            var preview = document.getElementById('imagePreview');
+            preview.innerHTML = ''; 
+        }
+    });
+</script>
 </html>
