@@ -90,8 +90,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const todoTitle = button.dataset.title;
             const todoContents = button.dataset.contents;
 
-            const modal = document.getElementById(`modal${todoId}`);
+            // console.log(`Editing Todo ID: ${todoId}`);
+            // console.log(`Modal ID: modal${todoId}`);
 
+            const modal = document.getElementById(`modalEdit${todoId}`);
+            
             if (modal) {
                 modal.style.display = 'block';
             }
@@ -117,9 +120,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     reader.onload = function(e) {
                         const img = new Image();
                         img.src = e.target.result;
-                        img.width = 100; // プレビューのサイズ設定
-                        imagePreview.innerHTML = ''; // 既存の画像を削除
-                        imagePreview.appendChild(img); // 新しい画像を追加
+                        img.width = 100; 
+                        imagePreview.innerHTML = ''; 
+                        imagePreview.appendChild(img); 
                     };
                     reader.readAsDataURL(file);
                 }
@@ -131,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     closeModalButtons.forEach(button => {
         button.addEventListener('click', () => {
-            const modal = button.closest('.modal');
+            const modal = button.closest('.modalEdit');
             if(modal) {
                 modal.style.display = 'none';
             }
@@ -139,11 +142,38 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    const modals = document.querySelectorAll('.modalEdit');
 
-// console.log(editButtons); 
-// console.log(closeEdit);
+    modals.forEach(modal => {
+        let isDragging = false;
+        let offsetX = 0;
+        let offsetY = 0;
 
+        modal.addEventListener('mousedown', (e) => {
+            
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'BUTTON') {
+                return;
+            }
+            isDragging = true;
+            offsetX = e.clientX - modal.offsetLeft;
+            offsetY = e.clientY - modal.offsetTop;
+            document.body.style.userSelect = 'none'; 
+        });
 
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                modal.style.left = `${e.clientX - offsetX}px`;
+                modal.style.top = `${e.clientY - offsetY}px`;
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            document.body.style.userSelect = ''; 
+        });
+    });
+});
 
 
 document.querySelectorAll('.delete-button').forEach(button => {

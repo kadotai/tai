@@ -123,6 +123,21 @@ h2 {
     border-radius: 10px;
     z-index: 100;
 }
+
+.modalEdit {
+  display: none; 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  padding: 20px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  cursor: move;
+}
+
+
 #modalOverlay {
     display: none;
     position: fixed;
@@ -265,6 +280,17 @@ main {
     font-size: 20px;
     border-radius: 10px;
     margin: 0 10px;
+}
+
+/* 編集ボタン */
+.edit-button {
+  color: #EF5A6F;
+  padding: 5px 10px;
+  background: #FFF;
+  border:  none;
+  font-size: 20px;
+  border-radius: 10px;
+  margin: 0 10px;
 }
 
 .delete-button {

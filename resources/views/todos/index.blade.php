@@ -94,7 +94,7 @@
                 <div id="modalOverlay1"></div>
                 <!-- 編集ボタン -->
                 <div class="button">
-                    <button id="openModalButton1" class="edit-button" data-id="{{ $todo->id }}" data-title="{{ $todo->title }}" data-contents="{{ $todo->contents }}">Edit</button>
+                    <button class="edit-button" data-id="{{ $todo->id }}" data-title="{{ $todo->title }}" data-contents="{{ $todo->contents }}">Edit</button>
 
 
                     {{-- 削除 --}}
@@ -106,8 +106,9 @@
                 </div>
 
                 <!-- 編集モーダル -->
+
                 @foreach($todos as $todo)
-                <div id="modal{{ $todo->id }}" class="modal" style="display: none;">
+                <div id="modalEdit{{ $todo->id }}" class="modalEdit" style="display: none;">
                     <form action="{{ route('todos.update', $todo->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
