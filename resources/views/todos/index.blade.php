@@ -75,11 +75,11 @@
         <div id="big_box">
             @foreach($todos as $todo)
             <div id="small_box">
-                @if($todo->image_at === 'images/default.png')
-                <img src="{{ asset($todo->image_at) }}" alt="HITODE" width="100px">
-                @else
-                <img src="{{ asset('storage/' . $todo->image_at) }}" alt="アイコン" width="210px">
-                @endif
+                   @if($todo->image_at === 'images/default.png')
+                   <img src="{{ asset($todo->image_at) }}" alt="HITODE" width="100px">
+                   @else
+                   <img src="{{ asset('storage/' . $todo->image_at) }}" alt="アイコン" width="210px" class="image_box">
+                   @endif
                 <label class="ECM_CheckboxInput">
                     <input class="ECM_CheckboxInput-Input" type="checkbox">
                     <span class="ECM_CheckboxInput-DummyInput"></span>
@@ -89,7 +89,7 @@
                 </label>
                 <p class="card-text">{{ $todo->contents }}</p>
                 <!-- 期日を表示 -->
-                <p class="card-text">Due Date: {{ $todo->due_date ? \Carbon\Carbon::parse($todo->due_date)->format('Y-m-d') : 'No due date' }}</p>
+                <p class="card-limit-text">〆 {{ $todo->due_date ? \Carbon\Carbon::parse($todo->due_date)->format('Y-m-d') : 'No due date' }}</p>
                 <!-- 編集モーダル用のオーバーレイ -->
                 <div id="modalOverlay1"></div>
                 <!-- 編集ボタン -->

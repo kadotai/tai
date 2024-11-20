@@ -157,6 +157,10 @@ main {
     overflow-wrap: break-word; /* 標準的な折り返し設定 */
     white-space: normal;
 }
+
+.image_box {
+  border-radius: 10px;
+}
   /* カード内の要素 */
 .card-title {
   word-wrap: break-word; /* 単語が長すぎる場合に折り返す */
@@ -169,7 +173,13 @@ main {
 
 .card-text {
     margin-bottom: 15px;
-    height: 50px;
+    height: 5px;
+}
+
+.card-limit-text {
+  font-size: 15px;
+  color: #536493;
+  text-align: right;
 }
 
 .button {
