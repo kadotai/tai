@@ -12,6 +12,13 @@ h1 {
     width: 150px;
 }
 
+@media screen and (max-width: 780px) {
+  h1 {
+    font-size: 25px;
+    width: 90px;
+}
+}
+
   /* ヘッダー */
 header {
     background-color: #536493;
@@ -19,16 +26,24 @@ header {
     padding: 20px;
 }
 
+
+
 #first {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+
 .dropdown nav {
   width: 150px;
 }
 
+/* @media screen and (max-width: 780px) {
+  .dropdown nav {
+    display: none;
+  }
+} */
 
 .dropdown-toggle {
     color: #FFF;
@@ -36,11 +51,34 @@ header {
     text-decoration: none; 
 }
 
+@media screen and (max-width: 780px){
+  .dropdown-toggle {
+    color: #FFF;
+    font-size: 20px;
+    text-decoration: none; 
+}
+}
+
 .dropdown-toggle1 {
   color: #EF5A6F;
   font-size: 25px;
   text-decoration: none; 
   
+}
+
+@media screen and (max-width: 780px){
+  .dropdown-toggle1 {
+    color: #EF5A6F;
+    font-size: 20px;
+    text-decoration: none; 
+    
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .search {
+    display: none;
+  }
 }
 
 /* 新規投稿ボタン */
@@ -51,6 +89,17 @@ header {
     border:  3px solid #EF5A6F;
     border-radius: 10px;
     font-size:25px;
+}
+
+@media screen and (max-width: 780px) {
+  #openModalButton {
+    color: #FFF;
+    padding: 0;
+    background: #EF5A6F;
+    border:  3px solid #EF5A6F;
+    border-radius: 10px;
+    font-size:25px;
+}
 }
 
 /* 新規投稿モーダルのスタイル */
@@ -150,6 +199,18 @@ h2 {
 
 
   /* メインコンテンツ */
+.search_mobile {
+  display: none;
+}
+
+@media screen and (max-width: 780px) {
+  .search_mobile {
+    display: contents;
+    text-align: center;
+  }
+}
+
+
 main {
     background-color: #FFF1DB;
     padding: 40px;
@@ -368,6 +429,13 @@ footer {
 .name {
   font-size: 25px;
 }
+
+@media screen and (max-width: 780px) {
+  .name {
+    font-size: 20px;
+  }
+}
+
 
 .uranai_box {
   background-color: #D4BDAC;

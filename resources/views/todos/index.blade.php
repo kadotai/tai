@@ -24,10 +24,12 @@
                     @else
                     <p>Please log in</p> <!-- ログインしていない場合のメッセージ -->
                 @endif
+                <div class="search">
                 <form id="searchForm" action="{{ route('todos.index') }}" method="GET" style="margin-bottom: 10px;">
                     <input type="text" id="searchInput" name="search" placeholder="Search by title or content" value="{{ request('search') }}">
                     <button type="submit">Search</button>
                 </form>
+            </div>
             </div>
             <!-- 新規投稿モーダル -->
             <div id="modal">
@@ -81,7 +83,13 @@
         </div>
     </header>
     <main>
-        
+        <div class="search_mobile">
+            <form id="searchForm" action="{{ route('todos.index') }}" method="GET" style="margin-bottom: 10px;">
+                <input type="text" id="searchInput" name="search" placeholder="Search by title or content" value="{{ request('search') }}">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
         <div id="big_box">
             @foreach($todos as $todo)
             <div id="small_box">
