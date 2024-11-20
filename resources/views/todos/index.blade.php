@@ -24,6 +24,12 @@
                     @else
                     <p>Please log in</p> <!-- ログインしていない場合のメッセージ -->
                 @endif
+                <div class="search">
+                <form id="searchForm" action="{{ route('todos.index') }}" method="GET" style="margin-bottom: 10px;">
+                    <input type="text" id="searchInput" name="search" placeholder="Search by title or content" value="{{ request('search') }}">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
             </div>
             <!-- 新規投稿モーダル -->
             <div id="modal">
@@ -33,13 +39,19 @@
             <input class="text1" name='title' placeholder="Title" maxlength="30">
             <br>
             <textarea class="text2" name='contents' placeholder="Contents" maxlength="140"></textarea>
+            <!-- 期日入力フォーム -->
+            <br>
+            <label for="due_date">〆</label>
+            <input type="date" name="due_date" id="due_date">
+            <br>
             <br>
             <label for="image" class="image_button">Select Image</label>
             <input id="image" type="file" name="image" accept="image/*" style="display: none;">
-            <!-- 期日入力フォーム -->
+            {{-- <!-- 期日入力フォーム -->
+            <br>
             <label for="due_date">Due Date:</label>
             <input type="date" name="due_date" id="due_date">
-            <br>
+            <br> --}}
             <button id="closeModalButton">Ok</button>
             <a class="dropdown-toggle1" href="/todos">&nbsp;Back</a>
             </form>
@@ -64,14 +76,20 @@
             @endif
 
             </div>
+            {{-- <form id="searchForm" action="{{ route('todos.index') }}" method="GET" style="margin-bottom: 10px;">
+                <input type="text" id="searchInput" name="search" placeholder="Search by title or content" value="{{ request('search') }}">
+                <button type="submit">Search</button>
+            </form> --}}
+        </div>
+    </header>
+    <main>
+        <div class="search_mobile">
             <form id="searchForm" action="{{ route('todos.index') }}" method="GET" style="margin-bottom: 10px;">
                 <input type="text" id="searchInput" name="search" placeholder="Search by title or content" value="{{ request('search') }}">
                 <button type="submit">Search</button>
             </form>
         </div>
-    </header>
-    <main>
-        
+
         <div id="big_box">
             @foreach($todos as $todo)
             <div id="small_box">
