@@ -126,7 +126,7 @@
                 <!-- 編集モーダル -->
                 @foreach($todos as $todo)
                 <div id="modalEdit{{ $todo->id }}" class="modalEdit" style="display: none;">
-                    {{-- <form action="{{ route('todos.update', $todo->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('todos.update', $todo->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <input type="text" name="title" value="{{ $todo->title }}" placeholder="Title">
@@ -139,7 +139,10 @@
                             @if($todo->image_at)
                                 <img src="{{ asset('storage/' . $todo->image_at) }}" alt="Current Image" width="100px">
                             @endif
-                        </div> --}}
+                        </div>
+                        <br>
+                        <button type="submit" id="updateButton{{ $todo->id }}">Update Task</button>
+                    </form>
                 
                         <!-- 期日編集フォーム -->
                         <form action="{{ route('todos.updateDueDate', $todo->id) }}" method="POST">
