@@ -122,16 +122,19 @@ class TodoController extends Controller
     // 追加: 期日を更新するメソッド
     public function updateDueDate(Request $request, $id)
     {
+        dd($request->all());
         $request->validate([
             'due_date' => 'required|date|after_or_equal:today', // 期日が今日以降であることを確認
         ]);
 
         $todo = Task::find($id);
 
+        dd($todo->due_date, $request->input('due_date'));
+
         if (!$todo) {
             return redirect()->route('todos.index')->with('error', 'タスクが見つかりません');
         }
-
+        dd($request->input('due_date'));
         $todo->due_date = $request->input('due_date');
         $todo->save();
 

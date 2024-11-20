@@ -110,24 +110,30 @@
                 @foreach($todos as $todo)
                 <div id="modalEdit{{ $todo->id }}" class="modalEdit" style="display: none;">
                     <form action="{{ route('todos.update', $todo->id) }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT')
-                    <input type="text" name="title" value="{{ $todo->title }}" placeholder="Title">
-                    <br>
-                    <input type="text" name="contents" value="{{ $todo->contents }}" placeholder="Detail">
-                    <br>
-                    <label for="image{{ $todo->id }}" class="image_button">Select Image</label>
-                    <input id="image{{ $todo->id }}" type="file" name="image" accept="image/*" style="display: none;">
-                    <div id="imagePreview{{ $todo->id }}">
-                    @if($todo->image_at)
-                        <img src="{{ asset('storage/' . $todo->image_at) }}" alt="Current Image" width="100px">
-                    @endif
-                    </div>
-                    <!-- 期日編集フォーム -->
-                    <label for="due_date_{{ $todo->id }}">Due Date:</label>
-                    <br>
-                    <button type="submit" id="submitButton{{ $todo->id }}">Ok</button>
-                    <button type="button" class="closeModalButton">Close</button>
+                        @csrf
+                        @method('PUT')
+                        <input type="text" name="title" value="{{ $todo->title }}" placeholder="Title">
+                        <br>
+                        <input type="text" name="contents" value="{{ $todo->contents }}" placeholder="Detail">
+                        <br>
+                        <label for="image{{ $todo->id }}" class="image_button">Select Image</label>
+                        <input id="image{{ $todo->id }}" type="file" name="image" accept="image/*" style="display: none;">
+                        <div id="imagePreview{{ $todo->id }}">
+                            @if($todo->image_at)
+                                <img src="{{ asset('storage/' . $todo->image_at) }}" alt="Current Image" width="100px">
+                            @endif
+                        </div>
+                
+                        <!-- 期日編集フォーム -->
+                        <form action="{{ route('todos.updateDueDate', $todo->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <label for="due_date_{{ $todo->id }}">Due Date:{{ $todo->due_date ? \Carbon\Carbon::parse($todo->due_date)->format('Y-m-d') : 'No due date' }}</label>
+                            <input id="due_date_{{ $todo->id }}" type="date" name="due_date" value="{{ $todo->due_date ? \Carbon\Carbon::parse($todo->due_date)->format('Y-m-d') : '' }}">
+                            <br>
+                            <button type="submit" id="submitButton{{ $todo->id }}">Ok</button>
+                            <button type="button" class="closeModalButton">Close</button>
+                        </form>
                     </form>
                 </div>
                 @endforeach
