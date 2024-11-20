@@ -98,6 +98,7 @@ class TodoController extends Controller
             'title' => 'required|max:30',
             'contents' => 'required|string|max:140',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'due_date' => 'nullable|date|after_or_equal:today',
         ]);
 
         $todo = Task::find($id);
@@ -113,48 +114,24 @@ class TodoController extends Controller
             $todo->image_at = $path;
         }
 
-        $todo -> save();
-
-        return redirect()->route('todos.index')->with('success', 'タスクが更新されました！');
-
-        $request->validate([
-            'due_date' => 'required|date|after_or_equal:today', // 期日が今日以降であることを確認
-        ]);
-
-        $todo = Task::find($id);
-
-        if (!$todo) {
-            return redirect()->route('todos.index')->with('error', 'タスクが見つかりません');
+        if ($request->filled('due_date')) {
+            $todo->due_date = $request->due_date;
         }
 
-        $todo->due_date = $request->input('due_date');
         $todo->save();
 
-        return redirect()->route('todos.index')->with('success', '期日が更新されました！');
+        return redirect()->route('todos.index');
         
     }
-
-    // 追加: 期日を更新するメソッド
-    public function updateDueDate(Request $request, $id)
-    {
-
-        $request->validate([
-            'due_date' => 'required|date|after_or_equal:today', // 期日が今日以降であることを確認
-        ]);
-
-        $todo = Task::find($id);
-
-        if (!$todo) {
-            return redirect()->route('todos.index')->with('error', 'タスクが見つかりません');
-        }
-
-        $todo->due_date = $request->input('due_date');
-        $todo->save();
-
-        return redirect()->route('todos.index')->with('success', '期日が更新されました！');
-    }
-
 }
+
+    // // 追加: 期日を更新するメソッド
+    // public function updateDueDate(Request $request, $id)
+    // {
+
+
+
+
 // public function store(Request $request)
 // {
 //     $validatedData = $request->validate([

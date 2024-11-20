@@ -141,36 +141,32 @@
                             @endif
                         </div>
                         <br>
-                        <button type="submit" id="updateButton{{ $todo->id }}">Update Task</button>
+                        <!-- 期日編集フォーム -->
+                        <label for="due_date_{{ $todo->id }}">Due Date:{{ $todo->due_date ? \Carbon\Carbon::parse($todo->due_date)->format('Y-m-d') : 'No due date' }}</label>
+                        <input id="due_date_{{ $todo->id }}" type="date" name="due_date" value="{{ $todo->due_date ? \Carbon\Carbon::parse($todo->due_date)->format('Y-m-d') : '' }}">
+                        <br>
+                        <button type="submit" id="submitButton{{ $todo->id }}">Ok</button>
+                        <button type="button" class="closeModalButton">Close</button>
+                        </form>
+                                                {{-- 成功メッセージ --}}
+                                                @if(session('success'))
+                                                <div class="alert alert-success">
+                                                {{ session('success') }}
+                                                </div>
+                                                @endif
+                                            
+                                                {{-- エラーメッセージ --}}
+                                                @if($errors->any())
+                                                <div class="alert alert-danger">
+                                                 <ul>
+                                                 @foreach($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                                @endforeach
+                                                </ul>
+                                                /div>
+                                                 @endif
                     </form>
                 
-                        <!-- 期日編集フォーム -->
-                        <form action="{{ route('todos.updateDueDate', $todo->id) }}" method="POST">
-                            @csrf
-                            @method('PUT')
-                            <label for="due_date_{{ $todo->id }}">Due Date:{{ $todo->due_date ? \Carbon\Carbon::parse($todo->due_date)->format('Y-m-d') : 'No due date' }}</label>
-                            <input id="due_date_{{ $todo->id }}" type="date" name="due_date" value="{{ $todo->due_date ? \Carbon\Carbon::parse($todo->due_date)->format('Y-m-d') : '' }}">
-                            <br>
-                            <button type="submit" id="submitButton{{ $todo->id }}">Ok</button>
-                            <button type="button" class="closeModalButton">Close</button>
-                        </form>
-                           {{-- 成功メッセージ --}}
-                            @if(session('success'))
-                                <div class="alert alert-success">
-                                    {{ session('success') }}
-                                </div>
-                            @endif
-
-                            {{-- エラーメッセージ --}}
-                            @if($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                        @endif
                     </form>
                 </div>
                 @endforeach
@@ -200,3 +196,4 @@
     });
 </script>
 </html>
+
