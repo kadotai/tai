@@ -28,4 +28,4 @@ Route::post('/todos', [TodoController::class, 'store'])->name('todos.store');
 Route::put('/todos/{id}', [TodoController::class, 'update'])->name('todos.update');
 Route::delete('/todos/{id}', [TodoController::class, 'destroy'])->name('todos.destroy');
 Route::get('/todos/mypage',[TodoController::class,'mypage'])->name('todos.mypage');
-Route::put('/todos/{id}/duedate', [TodoController::class, 'updateDueDate'])->name('todos.updateDueDate');
+Route::put('/todos/{id}/duedate', [TodoController::class, 'update'])->name('todos.update');
