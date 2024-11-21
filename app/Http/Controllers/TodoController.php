@@ -79,7 +79,7 @@ class TodoController extends Controller
 
         $post -> save();
 
-        return redirect()->route('todos.index')->with('success', 'タスクが作成されました！');
+        return redirect()->route('todos.index');
 
     }
     
@@ -115,7 +115,7 @@ class TodoController extends Controller
 
         $todo -> save();
 
-        return redirect()->route('todos.index')->with('success', 'タスクが更新されました！');
+        return redirect()->route('todos.index');
         
     }
 
@@ -129,13 +129,13 @@ class TodoController extends Controller
         $todo = Task::find($id);
 
         if (!$todo) {
-            return redirect()->route('todos.index')->with('error', 'タスクが見つかりません');
+            return redirect()->route('todos.index');
         }
 
         $todo->due_date = $request->input('due_date');
         $todo->save();
 
-        return redirect()->route('todos.index')->with('success', '期日が更新されました！');
+        return redirect()->route('todos.index');
     }
 
 }
