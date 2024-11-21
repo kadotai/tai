@@ -124,10 +124,6 @@ class TodoController extends Controller
     }
 }
 
-    // // 追加: 期日を更新するメソッド
-    // public function updateDueDate(Request $request, $id)
-    // {
-
 
 
 
