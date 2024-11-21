@@ -1,12 +1,12 @@
 * {
     background-color: #536493;
     color: #FFF;
-    font-size: 40px;
+    font-size: 30px;
     text-decoration: none;
     text-align: center;
 }
 
-h1 {
+.card-header {
     color: #EF5A6F;
     text-align: center;
     font-size: 60px;

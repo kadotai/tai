@@ -23,6 +23,7 @@
             <img src="{{ asset('images/fish.png') }}" alt="">
             <p class="name">UserName:{{ Auth::user()->name }}</p>
         </div>
+    <div class="horoscope">Horoscope</div>
     <div class="uranai">
         @foreach ( $dateFortune as $fortune )
   <section class="uranai_box">
