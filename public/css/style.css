@@ -192,8 +192,8 @@ h2 {
   text-align: center;
   font-size: 25px;
   /* サイズ変更 */
-  resize: both;  
-  overflow: auto;
+  /* resize: both;  
+  overflow: auto; */
 }
 
 .modalEdit button {
@@ -214,8 +214,6 @@ h2 {
 .modalEdit img {
   margin: 20px;
   margin-bottom: 0px; 
-  max-width: 90%;
-  max-height: 90%;
   border-radius: 10px;
 }
 
@@ -223,6 +221,10 @@ h2 {
   margin-bottom: 10px;
 }
 
+.preview-image {
+  width: 300px;
+  height: auto; /* 比率を維持 */
+}
 
 #modalOverlay {
     display: none;
@@ -251,13 +253,6 @@ h2 {
 main {
     background-color: #FFF1DB;
     padding: 40px;
-}
-
-.search_button {
-  color: #EF5A6F;
-    background-color: #FFF1DB;
-    border-radius: 10px;
-    padding: 5px 10px;
 }
 
 #big_box {
