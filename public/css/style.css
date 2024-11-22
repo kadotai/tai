@@ -180,12 +180,51 @@ h2 {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
-  padding: 20px;
+  padding-top: 55px;
   border-radius: 5px;
   background: rgba(0, 0, 0, 0.5);
   cursor: move;
+  width: 75%;
+  height: 75%;
+  color: #FFF;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 25px;
+  /* サイズ変更 */
+  /* resize: both;  
+  overflow: auto; */
 }
 
+.modalEdit button {
+  color: #EF5A6F;
+  padding: 5px 10px;
+  background: #FFF;
+  border:  none;
+  font-size: 25px;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.modalEdit input, .modalEdit label {
+  font-size: 24px;
+  margin-top: 10px;
+}
+
+.modalEdit img {
+  margin: 20px;
+  margin-bottom: 0px; 
+  border-radius: 10px;
+}
+
+.modalEdit .image_button {
+  margin-bottom: 10px;
+}
+
+.preview-image {
+  width: 300px;
+  height: auto; /* 比率を維持 */
+}
 
 #modalOverlay {
     display: none;
@@ -214,13 +253,6 @@ h2 {
 main {
     background-color: #FFF1DB;
     padding: 40px;
-}
-
-.search_button {
-  color: #EF5A6F;
-    background-color: #FFF1DB;
-    border-radius: 10px;
-    padding: 5px 10px;
 }
 
 #big_box {

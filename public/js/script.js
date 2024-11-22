@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     reader.onload = function(e) {
                         const img = new Image();
                         img.src = e.target.result;
-                        img.width = 100; 
+                        img.width = 300; 
                         imagePreview.innerHTML = ''; 
                         imagePreview.appendChild(img); 
                     };
@@ -201,3 +201,43 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+document.getElementById('image').addEventListener('change', function(e) {
+    var reader = new FileReader();
+    
+    reader.onload = function(event) {
+        var preview = document.getElementById('imagePreview');
+        preview.innerHTML = '<img src="' + event.target.result + '" class="preview-image">'; 
+        console.log(preview.innerHTML);
+    };
+
+    if (e.target.files.length > 0) {
+        reader.readAsDataURL(e.target.files[0]);
+    } else {
+        var preview = document.getElementById('imagePreview');
+        preview.innerHTML = ''; 
+        
+    }
+});
+
+// const modal = document.getElementById("modalEdit");
+
+// // モーダルをドラッグで動かせるようにする（オプション）
+// modal.addEventListener("mousedown", (e) => {
+//   let startX = e.clientX;
+//   let startY = e.clientY;
+//   let rect = modal.getBoundingClientRect();
+
+//   const onMouseMove = (e) => {
+//     modal.style.left = `${rect.left + e.clientX - startX}px`;
+//     modal.style.top = `${rect.top + e.clientY - startY}px`;
+//   };
+
+//   const onMouseUp = () => {
+//     window.removeEventListener("mousemove", onMouseMove);
+//     window.removeEventListener("mouseup", onMouseUp);
+//   };
+
+//   window.addEventListener("mousemove", onMouseMove);
+//   window.addEventListener("mouseup", onMouseUp);
+// });

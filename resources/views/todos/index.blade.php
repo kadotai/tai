@@ -133,38 +133,21 @@
                         <br>
                         <input type="text" name="contents" value="{{ $todo->contents }}" placeholder="Detail">
                         <br>
-                        <label for="image{{ $todo->id }}" class="image_button">Select Image</label>
-                        <input id="image{{ $todo->id }}" type="file" name="image" accept="image/*" style="display: none;">
+                        <input id="image{{ $todo->id }}" type="file" name="image" accept="image/*" style="display: none">
                         <div id="imagePreview{{ $todo->id }}">
                             @if($todo->image_at)
-                                <img src="{{ asset('storage/' . $todo->image_at) }}" alt="Current Image" width="100px">
+                                <img src="{{ asset('storage/' . $todo->image_at) }}" alt="Current Image" style="width: 300px; height: auto;">
                             @endif
                         </div>
+                        <label for="image{{ $todo->id }}" class="image_button">Select Image</label>
                         <br>
                         <!-- 期日編集フォーム -->
-                        <label for="due_date_{{ $todo->id }}">Due Date:{{ $todo->due_date ? \Carbon\Carbon::parse($todo->due_date)->format('Y-m-d') : 'No due date' }}</label>
+                        <label for="due_date_{{ $todo->id }}">〆 {{ $todo->due_date ? \Carbon\Carbon::parse($todo->due_date)->format('Y-m-d') : 'No due date' }}</label>
                         <input id="due_date_{{ $todo->id }}" type="date" name="due_date" value="{{ $todo->due_date ? \Carbon\Carbon::parse($todo->due_date)->format('Y-m-d') : '' }}">
                         <br>
                         <button type="submit" id="submitButton{{ $todo->id }}">Ok</button>
                         <button type="button" class="closeModalButton">Close</button>
                         </form>
-                                                {{-- 成功メッセージ --}}
-                                                @if(session('success'))
-                                                <div class="alert alert-success">
-                                                {{ session('success') }}
-                                                </div>
-                                                @endif
-                                            
-                                                {{-- エラーメッセージ --}}
-                                                @if($errors->any())
-                                                <div class="alert alert-danger">
-                                                 <ul>
-                                                 @foreach($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                                @endforeach
-                                                </ul>
-                                                /div>
-                                                 @endif
                     </form>
                 
                     </form>
@@ -178,22 +161,6 @@
     </footer>
 </body>
 <script src="{{ asset('js/script.js') }}"></script>
-<script>
-    document.getElementById('image').addEventListener('change', function(e) {
-        var reader = new FileReader();
-        
-        reader.onload = function(event) {
-            var preview = document.getElementById('imagePreview');
-            preview.innerHTML = '<img src="' + event.target.result + '" width="100px">'; 
-        };
 
-        if (e.target.files.length > 0) {
-            reader.readAsDataURL(e.target.files[0]);
-        } else {
-            var preview = document.getElementById('imagePreview');
-            preview.innerHTML = ''; 
-        }
-    });
-</script>
 </html>
 

@@ -9,7 +9,6 @@ use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
 // use Illuminate\Support\Facades\Storage;
 
 
@@ -79,7 +78,7 @@ class TodoController extends Controller
 
         $post -> save();
 
-        return redirect()->route('todos.index')->with('success', 'タスクが作成されました！');
+        return redirect()->route('todos.index');
 
     }
     
@@ -124,10 +123,6 @@ class TodoController extends Controller
         
     }
 }
-
-    // // 追加: 期日を更新するメソッド
-    // public function updateDueDate(Request $request, $id)
-    // {
 
 
 
