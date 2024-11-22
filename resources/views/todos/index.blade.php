@@ -86,7 +86,7 @@
         <div class="search_mobile">
             <form id="searchForm" action="{{ route('todos.index') }}" method="GET" style="margin-bottom: 10px;">
                 <input type="text" id="searchInput" name="search" placeholder="Search by title or content" value="{{ request('search') }}">
-                <button type="submit">Search</button>
+                <button type="submit" >Search</button>
             </form>
         </div>
 
