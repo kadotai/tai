@@ -201,3 +201,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+const modal = document.getElementById("modalEdit");
+
+// モーダルをドラッグで動かせるようにする（オプション）
+modal.addEventListener("mousedown", (e) => {
+  let startX = e.clientX;
+  let startY = e.clientY;
+  let rect = modal.getBoundingClientRect();
+
+  const onMouseMove = (e) => {
+    modal.style.left = `${rect.left + e.clientX - startX}px`;
+    modal.style.top = `${rect.top + e.clientY - startY}px`;
+  };
+
+  const onMouseUp = () => {
+    window.removeEventListener("mousemove", onMouseMove);
+    window.removeEventListener("mouseup", onMouseUp);
+  };
+
+  window.addEventListener("mousemove", onMouseMove);
+  window.addEventListener("mouseup", onMouseUp);
+});
